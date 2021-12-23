@@ -1,0 +1,8 @@
+{
+  "name": "eComm",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "95c4f1e8"
+}

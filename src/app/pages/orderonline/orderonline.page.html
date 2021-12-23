@@ -1,0 +1,272 @@
+<ion-content [fullscreen]="true" *ngIf="isLoaded===true">
+
+  <perfect-scrollbar style="height: 100%;width:100%;">
+    <ion-grid class="ion-no-padding" style="width:100%;margin-top:-8px;padding:0;margin: 0;">
+      <section id="contactus">
+        <div class="heading ion-text-center" style="width:100%;"
+          *ngIf="this.obsDeliveryInfo.Is_Customise_Packaging==true">
+          <h3 style="color: #555 !important;" class="ion-text-center">
+            <a href="#" title="Go to Home Page" ng-click="ToLocation('/')">
+              <em class="h5">
+                Cart
+              </em>
+            </a><em class="h5">&nbsp;/ {{Packaging_Name}}</em>
+          </h3>
+        </div>
+
+        <div class="heading ion-text-center" style="width:100%;"
+          *ngIf="this.obsDeliveryInfo.Is_Customise_Packaging==false">
+          <h3 style="color: #555 !important;" class="ion-text-center">
+            <a href="#" title="Go to Home Page" ng-click="ToLocation('/')">
+              <em class="h5">
+                {{ this.data?.act == 'editorder' ? 'Cart (Edit)':'Cart'}}
+              </em>
+            </a>
+          </h3>
+        </div>
+      
+        <ion-row size="12">
+          <ion-col style="padding-left:5px;padding-right:5px" size-md="10" size-xs="12" size-lg="10" offset-lg="1" offset-md="1" offset-xs="0">
+            <ion-row size="12" class="ion-align-self-center ion-text-center"
+              style="border-bottom: 1px solid rgba(0,0,0,.1);background-color:#fbfbfb;height:47px;font-size:18px;color:#5D6167">
+
+              <ion-col class="ion-align-self-center ion-text-left" size-lg="12" size-md="12">
+                Step 3: Choose the Kueh 
+              </ion-col>
+
+            </ion-row>
+
+          </ion-col>
+        </ion-row>
+
+        <ion-grid *ngFor="let item of obsCategoriesProduct?.Category_Product; let x = index">
+          <ion-row style="width: 100%;" size="12">
+            <ion-col size-md="10" size-xs="12" size-lg="10" offset-lg="1" offset-md="1" offset-xs="0">
+
+              <ion-row size="12" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                <ion-col size="12" size-lg="12">
+                  <ion-row>
+                    <ion-label style="font-size:22px;color:#5D6167;font-weight: bold;
+                     padding-left:10px;padding-top:10px;">{{item.Category_Code}}
+                    </ion-label>
+
+
+
+                  </ion-row>
+                  <ion-row>
+                    <ion-label style="font-size:12px;color:#5D6167;
+                    padding-left:10px;padding-top:10px;" *ngIf="item.Category_Code == 'Ang Ku Kueh'">
+                      Kindly note: Pre order minimum 2days in advance. Available Monday to Saturday. All 8 fillings available Mon-Fri, Sat Peanut and Sweet Bean only. Can self pickup, min order 10 pcs. Delivery service available (chargeable), min order $50. Standard packaging 10pcs per box, or min 5pcs/box to max 12pcs/box.
+                    </ion-label>
+                  </ion-row>
+                  <ion-row>
+                    <ion-label style="font-size:12px;color:#5D6167;
+                    padding-left:10px;padding-top:10px;" *ngIf="item.Category_Code == 'Made To Order'">
+                      Kindly note: Pre-order minimum 2days in advance. Available Monday to Saturday. Per order min qty for Ang Ee is 12pcs, Tiong Ku is 12pcs, Ka Ta Ku per order is for a pair. Can self pickup, min order $14.40. Delivery service available (chargeable), min order $60.
+                    </ion-label>
+                  </ion-row>
+                  <ion-row>
+                    <ion-label style="font-size:12px;color:#5D6167;
+                    padding-left:10px;padding-top:10px;" *ngIf="item.Category_Code == 'Baby Shower'">
+                      Kindly note: Pre-order minimum 5days in advance. Available Monday to Saturday. Min per order qty is 10sets, can self pickup or delivery with a fees. 
+
+                      <!-- <img src="../../../assets/phone_dark.svg" class="ion-text-left" style="height:18px;width:18px;"> kindly contact Jack 92700510 if has question -->
+                    </ion-label>
+                  </ion-row>
+                  <ion-row>
+                    <ion-label style="font-size:12px;color:#5D6167;
+                    padding-left:10px;padding-top:10px;" *ngIf="item.Category_Code == 'Seasonal Kueh'">
+                   Kindly note: Pre-order minimum 5days in advance during festive season. Available Monday to Saturday. Ang Ji min order normal 10pcs, festive 2pcs. Huat Kueh small size 5pcs/pack (available every Fri & Sat, self pickup only), medium size 2pcs/pack min order 10pcs, large size 1pc/pack min order 5pcs. Ni Gao min order normal 10pcs, festive 2pcs. Sesame Ball min order normal 20pcs, festive 10pcs. Self pickup min order $12, delivery min order $60 with a fees.
+                   
+                    </ion-label>
+                  </ion-row>
+
+                </ion-col>
+
+                <ion-col size="12" size-lg="4" *ngIf="item.Product!== undefined &&  item.Product?.length >0 ">
+
+                  <!-- <ion-row>
+                    <ion-slides style="height:195px;width:170px;" pager="true" [options]="slideOpts"
+                      [attr.id]="'Slide' + x">
+                      <ion-slide style="padding:10px;height:170px;width:170px;"
+                        *ngFor="let itemDet of item.Product; let i = index">
+                        <img style="height: 170px; width: 170px;" src="{{itemDet.Image_Path}}">
+                      </ion-slide>
+                    </ion-slides>
+
+                  </ion-row> -->
+                </ion-col>
+              </ion-row>
+
+              <ion-row size="12" style="border: 1px solid rgba(0,0,0,.1)">
+                <ion-col size="4"  size-md="4" size-xs="12">
+                </ion-col>
+                <ion-col size="8" size-md="8"  size-xs="12" >
+                  <ion-row size="12" class="ion-align-self-center ion-text-center"
+                    style="background-color:#fbfbfb;height:47px;font-size:15px;color:#5D6167">
+                    <ion-col style="padding-left:10px;padding-right:10px;" class="ion-align-self-center ion-text-left" size-lg="4" size-md="4">
+                      Products
+                    </ion-col>
+                    <ion-col class="ion-align-self-center ion-text-center" size-lg="3" size-md="3">
+                      Price
+                    </ion-col>
+                    <ion-col class="ion-align-self-center ion-text-center" size-lg="3" size-md="3">
+                      Quantity
+                    </ion-col>
+                    <ion-col class="ion-align-self-center ion-text-center" size-lg="2" size-md="2">
+                      Subtotal
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+
+              <ion-row size="12" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                <ion-col size="4" size-md="4"  size-sm="12" size-xs="12"  *ngIf="item.Product!== undefined &&  item.Product?.length >0 ">
+                  <ion-col style="color:#021333;font-size:15px" class="ion-align-self-center ion-text-left"
+                  size-lg="4" size-md="4" size-xs="12">
+                  <ion-slides style="height:100%;width:100%;" pager="true" [options]="slideOpts"
+                  [attr.id]="'Slide' + x">
+                  <ion-slide style="padding:10px;height:100%;width:100%;"
+                    *ngFor="let itemDet of item.Product; let i = index">
+                    <img style="object-fit: cover!important;" src="{{itemDet.Image_Path}}">
+                  </ion-slide>
+                </ion-slides>
+                  </ion-col>
+                
+                </ion-col>
+                <!-- [ngStyle.xs]= -->
+                <ion-col size="8" size-md="8"    size-sm="12" size-xs="12" *ngIf="item.Product!== undefined &&  item.Product?.length >0 ">
+                  <ion-row size="12" class="ion-align-self-center ion-text-center"
+                    style="margin-top:10px;font-size:15px;" *ngFor="let itemDet of item.Product; let i = index">
+                    <ion-col (click)="next('Slide' + x, i)" style="cursor: pointer;color:#021333;font-size:15px;padding-left:10px;padding-right:10px;" class="ion-align-self-center ion-text-lg-left ion-text-sm-left ion-text-md-center"
+                      size-lg="4" size-md="4" size-xs="12">
+                      <span style="font-weight: bold;">{{itemDet.Product_Name}}</span>
+                      <span style="color:#5D6167"><br>{{itemDet.Product_Name2}}</span>
+                    </ion-col>
+                    <ion-col style="color:#5D6167;font-size:15px" class="ion-align-self-center ion-text-center"
+                      size-lg="3" size-md="3" size-xs="12">
+                      {{itemDet.Format_Price}}
+                    </ion-col>
+                    <ion-col class="stackfont ion-align-self-center ion-text-center ion-no-padding" 
+                    size-lg="3" size-md="3" size-xs="12" style="justify-content: center;text-align: center;align-items: center;align-content: center;">
+                      <div *ngIf="(itemDet.Disabled_Product==false && itemDet.Overlimit_Qty ==false) || this.data?.act == 'editorder'"
+                      class="ion-align-self-center ion-justify-content-center" 
+                        style="text-align: center;align-items: center;align-content: center; justify-content: center;display: flex; ">
+                        <!-- padding-left:40%; padding-right:40% -->
+                        <ion-item class="ion-align-self-center ion-text-right ion-no-padding" style="width:76px;text-align: center;align-items: center;align-content: center;
+                          --padding-end:0 !important;padding:0px;">
+
+
+                          <!--  (keypress)="onInput($event,this) style="padding-left:16px!important" " <ion-input type="number" text-center></ion-input>                   
+                           -->
+                           <div style="align-content: center;width:100%;">
+                          <ion-input style="width:100%"  type="number" class="ion-no-padding text-right" required placeholder="Qty"
+                            id="{{ 'wave' + x + i }}"  [(ngModel)]="itemDet.Qty"
+                            min="0" max="999" (keypress)="onInput($event)" 
+                            (focusout)="onKeyUp(itemDet,x)" >
+                          </ion-input>
+                        </div>
+                        </ion-item>
+
+                      </div>
+                      <div   style="text-align: center;align-items: center;align-content: center;padding-left:20%;padding-right:20%" 
+                      *ngIf="(itemDet.Disabled_Product==true || itemDet.Overlimit_Qty ==true) && this.data?.act != 'editorder'">
+                        <span style="color:#5D6167" *ngIf="itemDet.Overlimit_Qty==false && itemDet.Disabled_Product==true">{{itemDet.Disabled_Message}}</span>
+                        <span style="color:#5D6167" *ngIf="itemDet.Overlimit_Qty==true">Out of Stock</span>
+                      </div>
+                    </ion-col>
+                    <ion-col style="color:#5D6167;font-size:15px" class="ion-align-self-center ion-text-center"
+                      size-lg="2" size-md="2" size-xs="12">
+                      {{subtotal(x,i)}}
+                    </ion-col>
+                  </ion-row>
+                  <ion-row  *ngIf="item.Category_Code == 'Baby Shower'">
+                    <ion-label style="font-size:15px;color:#5D6167;
+                    padding-left:10px;padding-top:10px;">
+                     Each gift box consists of <br/>
+                     &nbsp;&nbsp;&nbsp;-5pcs Ang Ee (for Baby Boy) or Ang Ku Kueh (for Baby Girl) <br/> 
+                     &nbsp;&nbsp;&nbsp;-2pcs Red Egg  <br/>  
+                     &nbsp;&nbsp;&nbsp;-2pcs Ferrero Rocher  <br/> 
+                     &nbsp;&nbsp;&nbsp;-1 pack of Glutinious Rice  <br/> 
+                     The 5pcs Ang Ee or Ang Ku Kueh standard filling is 2pcs Peanut 3pcs Sweet Bean.<br/><br/>
+                     For customise baby shower ordering, kindly call +65 6223 1631 or Whatsapp Jack +65 9270 0510.
+                    </ion-label>
+                  </ion-row>
+                </ion-col>
+                <ion-col *ngIf="item.Product === undefined || item.Product?.length <1">
+                  <ion-row size="12" class="ion-align-self-center ion-text-center"
+                    style="margin-top:10px;margin-bottom:10px;font-size:15px;">
+                    <ion-col style="color:#5D6167;font-size:15px" class="ion-align-self-center ion-text-center"
+                      size="12">
+                      No available product on this day.
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+
+              <ion-row size="12" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                <ion-col>
+                  <ion-row size="12" class="ion-align-self-center ion-text-center"
+                    style="padding-top:10px;padding-bottom:10px;font-size:15px;">
+                    <ion-col class="ion-align-self-center ion-text-left" size-lg="1" size-md="1" size-xs="12"
+                      >
+
+                    </ion-col>
+                    <ion-col style="color:#021333;font-size:15px" class="ion-align-self-center ion-text-left"
+                      size-lg="2" size-md="2" size-xs="12">
+
+                    </ion-col>
+                    <ion-col style="color:#021333;font-size:15px" class="ion-align-self-center ion-text-left"
+                      size-lg="3" size-md="3" size-xs="12">
+
+                    </ion-col>
+                    <ion-col style="color:#5D6167;font-size:15px" class="ion-align-self-center ion-text-center"
+                      size-lg="2" size-md="2" size-xs="12">
+                      Total
+                    </ion-col>
+                    <ion-col class="stackfont ion-align-self-center ion-text-center ion-no-padding" size-lg="2"
+                      size-md="2" size-xs="12" style="text-align: center;align-items: center;align-content: center;">
+                      {{item.Total_Qty}}
+                    </ion-col>
+                    <ion-col style="color:#5D6167;font-size:15px" class="ion-align-self-center ion-text-center"
+                      size-lg="2" size-md="2" size-xs="12">
+                      {{item.Format_Total}}
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+
+            </ion-col>
+          </ion-row>
+
+
+
+        </ion-grid>
+
+        <ion-row style="width: 100%;" size="12">
+          <ion-col size-md="10" size-xs="12" size-lg="10" offset-lg="1" offset-md="1" offset-xs="0">
+            <ion-row size="12" style="font-family: 'Poppins', sans-serif;">
+              <ion-col>
+                <ion-row size="12" class="ion-align-self-right ion-text-right"
+                  style="margin-top:10px;font-size:15px;float: right;">
+                  <ion-button style=" width:190px;height:39px;float: right;font-size:13px;" color="vibrant"
+                    expand="round" (click)="addtoCart()">
+                    <!-- <fa-icon icon="cart-plus" style="font-size: 13px; margin-right:5px"></fa-icon> -->
+
+                    {{this.obsDeliveryInfo.Is_Customise_Packaging === true? "ADD TO CART":" PROCEED TO CHECKOUT"}}
+                  </ion-button>
+
+                </ion-row>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+
+        
+      </section>
+
+
+    </ion-grid>
+
+  </perfect-scrollbar>
+</ion-content>

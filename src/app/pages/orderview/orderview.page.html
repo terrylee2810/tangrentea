@@ -1,0 +1,664 @@
+<ion-content [fullscreen]="true">
+  <input accept="image/*" type="file" style="display:none" (change)="edit(hiddenfileinputsingle.files)"
+    #hiddenfileinputsingle single>
+  <input accept="image/*" type="file" style="display:none" (change)="edit2(hiddenfileinputsingle1.files)"
+    #hiddenfileinputsingle1 single>
+
+
+  <!-- <perfect-scrollbar style="height: 100%;width:100%;"> -->
+  <form name="form" #f="ngForm" class="formGroup">
+    <perfect-scrollbar style="height: 100%;width:100%;">
+      <!-- <div class="heading ion-text-center" style="width:100%;">
+        <h3 style="color: #555 !important;" class="ion-text-center">
+          <a style="cursor: pointer;" (click)="back()">
+            <em class="h5">
+              My Orders
+            </em>
+          </a><em class="h5">&nbsp;/ Order View</em>
+        </h3>
+      </div> -->
+      <ion-grid>
+        <ion-row style="width: 100%;" size="12">
+          <ion-col size-md="10" size-xs="12" size-lg="10" offset-lg="1" offset-md="1" offset-xs="0">
+            <ion-row style="width: 100%;" size="12">
+              <ion-col size-md="3" size-xs="12" size-lg="3">
+
+                <ion-row size="12" style="font-family: 'Poppins', sans-serif;color:#5D6167">
+                  <ion-col style="padding-left:10px;padding-right:50px;">
+                    <ion-row size="12" class="ion-align-self-center" style="margin-top:10px;font-size:16px;">
+                      <ion-col size="12">
+                        <ion-row style="margin-bottom:10px">
+                          <div class="block block-collapsible-nav account-nav">
+                            <div class="block-title block-collapsible-nav account-nav-title">
+                              <h3>My Account</h3>
+                            </div>
+                            <div class="content block-collapsible-nav account-nav-content"
+                              id="block-collapsible-nav account-nav">
+                              <ul style="padding-inline-start: 15px;">
+                                <div *ngFor="let menu of obsMenu;  let s=index">
+                                  <li class="nav item"><a href="{{menu.url}}"
+                                      [ngStyle]="{'font-weight':menu.bold ? 'bold' : 'normal' }">{{menu.title}}</a></li>
+                                </div>
+                              </ul>
+                            </div>
+                          </div>
+                        </ion-row>
+                      </ion-col>
+
+
+                    </ion-row>
+
+
+
+                  </ion-col>
+                </ion-row>
+
+
+
+
+              </ion-col>
+
+              <ion-col size-md="9" size-xs="12" size-lg="9">
+                <ion-row size="12">
+                  <ion-col style="padding-left:10px;padding-right:50px;">
+                    <ion-row size="12" class="ion-align-self-center ion-text-center"
+                      style="border-bottom: 1px solid rgba(0,0,0,.1);background-color:#fbfbfb;height:47px;font-size:18px;color:#5D6167">
+
+                      <ion-col class="ion-align-self-center ion-text-left" size="6">
+                        Order
+                      </ion-col>
+                      <ion-col *ngIf="'Admin;Admin3;'.includes(this.obsUserSession.Member_Type+';')" class="ion-align-self-center ion-text-right" size="6">
+                        <a [routerLink]="[]" (click)="editorder()" class="menuitemact"
+                          style="text-decoration: underline;font-size:16px;">Edit Order</a>
+                      </ion-col>
+
+                    </ion-row>
+
+                  </ion-col>
+                </ion-row>
+                <ion-row size="12" style="font-family: 'Poppins', sans-serif;color:#5D6167">
+
+                  <ion-col class="stackfont ion-text-left stacklabel" style="padding-left:10px;" size-lg="2" size-md="4"
+                    size-xs="6">
+                    <ion-label style="font-size:10px;font-weight:normal !important">ORDER NO</ion-label><br />
+                    <ion-label> {{ this.obsOrder.Order_No }}</ion-label>
+                  </ion-col>
+                  <ion-col class="stackfont ion-text-left stacklabel" style="padding-left:10px;" size-lg="3" size-md="4"
+                    size-xs="6">
+                    <ion-label style="font-size:10px;font-weight:normal !important">DELIVERY DATE/TIME</ion-label><br />
+                    <ion-label> {{ this.obsOrder.Delivery_DateTime }}</ion-label>
+                  </ion-col>
+                  <ion-col class="stackfont ion-text-left stacklabel" style="padding-left:10px;" size-lg="3" size-md="4"
+                    size-xs="6">
+                    <ion-label style="font-size:10px;font-weight:normal !important">YOUR EMAIL</ion-label><br />
+                    <ion-label> {{ this.obsOrder.Billing_Email }}</ion-label>
+                  </ion-col>
+                  <ion-col class="stackfont ion-text-left stacklabel" style="padding-left:10px;" size-lg="2" size-md="4"
+                    size-xs="6">
+                    <ion-label style="font-size:10px;font-weight:normal !important">TOTAL AMOUNT</ion-label><br />
+                    <ion-label> {{ this.obsOrder.Format_Total }}</ion-label>
+                  </ion-col>
+                  <ion-col class="stackfont ion-text-left stacklabel" style="padding-left:10px;" size-lg="2" size-md="4"
+                    size-xs="6">
+                    <ion-label style="font-size:10px;font-weight:normal !important">PAYMENT VERIFICATION</ion-label>
+                    <br />
+                    <ion-label> {{ this.obsOrder.Payment_Status }}</ion-label>
+                  </ion-col>
+                  <ion-col class="stackfont ion-text-left stacklabel" style="padding-left:10px;" size-lg="2" size-md="4"
+                    size-xs="6">
+                    <ion-label style="font-size:10px;font-weight:normal !important">ORDER STATUS</ion-label><br />
+                    <ion-label> {{ this.obsOrder.Order_Status }}</ion-label>
+                  </ion-col>
+
+                </ion-row>
+
+
+                <div *ngIf="obsOrder.Receipt_Path  != ''">
+                  <ion-row size="12">
+                    <ion-col style="padding-left:10px;padding-right:50px;">
+                      <ion-row size="12" class="ion-align-self-center ion-text-center"
+                        style="border-bottom: 1px solid rgba(0,0,0,.1);background-color:#fbfbfb;height:47px;font-size:18px;color:#5D6167">
+                        <ion-col class="ion-align-self-center ion-text-left" size-lg="4" size-md="4">
+                          Payment Screenshot
+                        </ion-col>
+                      </ion-row>
+                    </ion-col>
+                  </ion-row>
+
+
+                  <ion-row style="width: 100%;padding-top:10px" size="12">
+                    <ion-col size-md="12" size-xs="12" size-lg="12">
+
+
+                      <ion-row size="12" style="font-family: 'Poppins', sans-serif;">
+
+                        <ion-col size="12" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                          <ion-col offset="1" size="10">
+                            <img [src]="obsOrder.Receipt_Path" style="width:300px;height:300px;padding:10px ">
+                          </ion-col>
+                        </ion-col>
+                      </ion-row>
+
+                    </ion-col>
+
+
+                  </ion-row>
+
+                  <ion-row *ngIf="'Admin;Admin3;Admin123;'.includes(this.obsUserSession.Member_Type+';')" size="12" class="ion-align-self-right"
+                    style="font-size:14px;">
+                    <ion-col>
+                      <ion-row style="float: right;">
+                        <ion-button style="width:150px;height:39px;float: right;font-size:13px;" color="vibrant"
+                          expand="round" (click)="paymentreceived()">
+                          <!-- <fa-icon icon="cart-plus" style="font-size: 13px; margin-right:5px"></fa-icon> -->
+
+                          Payment Received
+                        </ion-button>
+                      </ion-row>
+                    </ion-col>
+
+
+                  </ion-row>
+                </div>
+
+              
+                <div *ngIf="obsOrder.Due_Amount != 0">
+                  <ion-row style="width: 100%;padding-top:10px" size="12" *ngIf="chkPaynow">
+                    <ion-col size-md="12" size-xs="12" size-lg="12">
+                      <ion-row size="12" style="border: 1px solid rgba(0,0,0,.1)">
+                        <ion-col>
+                          <ion-row size="12" class="ion-align-self-center ion-text-center"
+                            style="background-color:#fbfbfb;font-size:16px;color:#5D6167">
+
+                            <ion-col
+                              style="font-weight: bold;padding-top:5px;padding-bottom:5px;padding-left:20px;padding-right:20px"
+                              class="ion-align-self-center ion-text-left" size-lg="12" size-md="12">
+                              Payment Different Screenshot<br />
+                              <span style="font-weight: normal;font-size:14px">  Due Different : {{obsOrder.Format_Due_Amount}} </span>
+                            </ion-col>
+                          </ion-row>
+
+                        </ion-col>
+                      </ion-row>
+
+                      <ion-row size="12" style="font-family: 'Poppins', sans-serif;" *ngIf="obsOrder.Receipt_Path1!=''">
+                        <ion-col size="12" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                        
+                         <ion-col offset="1" size="10">
+                          <img [src]="obsOrder.Receipt_Path1" style="width:300px;height:300px;padding:10px ">
+                          </ion-col> 
+                        </ion-col>
+                      </ion-row>
+
+                    </ion-col>
+
+
+                  </ion-row>
+
+                  <ion-row  size="12" class="ion-align-self-right"
+                    style="font-size:14px;" *ngIf="this.obsOrder.Payment_Status  == 'Pending'">
+                    <ion-col>
+                      <ion-row style="float: right;" >
+                        <ion-button style="width:150px;height:39px;float: right;font-size:13px;" color="vibrant"
+                          expand="round" (click)="tapuploaddiff()">
+                          <!-- <fa-icon icon="cart-plus" style="font-size: 13px; margin-right:5px"></fa-icon> -->
+
+                          Upload Reference 
+                        </ion-button>
+                      </ion-row>
+                      
+                    </ion-col>
+
+
+                  </ion-row>
+
+                  <ion-row *ngIf="'Admin;Admin3;Admin123;'.includes(this.obsUserSession.Member_Type+';') && obsOrder.Receipt_Path1  != ''" size="12" class="ion-align-self-right"
+                  style="font-size:14px;">
+                  <ion-col>
+                    <ion-row style="float: right;">
+                      <ion-button style="width:150px;height:39px;float: right;font-size:13px;" color="vibrant"
+                        expand="round" (click)="paymentreceived1()">
+                        <!-- <fa-icon icon="cart-plus" style="font-size: 13px; margin-right:5px"></fa-icon> -->
+
+                        Payment Received
+                      </ion-button>
+                    </ion-row>
+                  </ion-col>
+
+
+                </ion-row>
+
+
+
+                </div>
+
+
+
+
+
+                <div *ngIf="this.obsOrder.Payment_Status  == 'Pending'">
+                  <!-- <ion-row style="width: 100%;" size="12">
+                    <ion-label style="font-size:22px !important;font-weight:normal !important">Payment Method</ion-label>
+                  </ion-row> -->
+<!-- 
+                  <ion-row style="width: 100%;" size="12">
+                    <div style="padding-top: 10px;">
+                      <div style="display:inline;" (click)="check_paynow()">
+                        <ion-checkbox style="--border-radius:100%" [checked]="chkPaynow">
+                        </ion-checkbox>
+                        <ion-label style="margin-left:5px"> PayNow</ion-label>
+                      </div>
+
+                     <div style="display:inline;" (click)="check_banktransfer()">
+                        <ion-checkbox style="margin-left:10px;--border-radius:100%" [checked]="chkBankTransfer">
+                        </ion-checkbox>
+                        <ion-label style="margin-left:5px"> QR Code Bank Transfer</ion-label>
+                      </div>
+
+                    </div>
+                  </ion-row> -->
+
+                  <ion-row style="width: 100%;padding-top:10px" size="12" *ngIf="chkPaynow">
+                    <ion-col size-md="12" size-xs="12" size-lg="12">
+                      <ion-row size="12" style="border: 1px solid rgba(0,0,0,.1)">
+                        <ion-col>
+                          <ion-row size="12" class="ion-align-self-center ion-text-center"
+                            style="background-color:#fbfbfb;font-size:16px;color:#5D6167">
+
+                            <ion-col
+                              style="font-weight: bold;padding-top:5px;padding-bottom:5px;padding-left:20px;padding-right:20px"
+                              class="ion-align-self-center ion-text-left" size-lg="12" size-md="12">
+                              PAYNOW <br />
+                              <span style="font-weight: normal;font-size:14px">Make your payment directly into our bank
+                                account per UEN number below. Please use your Order No as the payment reference. Upload payment screenshot of either image or sms of successful interbank transfers.  Your order will not be processed
+                                until the funds have received in our account.</span>
+                            </ion-col>
+                          </ion-row>
+
+                        </ion-col>
+                      </ion-row>
+
+                      <!-- <ion-row size="12" style="font-family: 'Poppins', sans-serif;">
+                        <ion-col size="6" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                          <ion-col offset="1" size="10">
+                            <ion-label style="font-size:13px;line-height: 25px;font-weight: bold;color: #6a6a6a;">
+                              Phone :
+                            </ion-label>
+                          </ion-col>
+                        </ion-col>
+                        <ion-col size="6" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                          <ion-col offset="1" size="10">
+                            <ion-label style="font-size:13px;line-height: 25px;font-weight: bold;color: #6a6a6a;">
+                              +65 9270 0510
+                            </ion-label>
+                          </ion-col>
+                        </ion-col>
+                      </ion-row> -->
+
+                      <ion-row size="12" style="font-family: 'Poppins', sans-serif;">
+                        <ion-col size="6" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                          <ion-col offset="1" size="10">
+                            <ion-label style="font-size:13px;line-height: 25px;font-weight: bold;color: #6a6a6a;">
+                            UEN :
+                            </ion-label>
+                          </ion-col>
+                        </ion-col>
+                        <ion-col size="6" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                          <ion-col offset="1" size="10">
+                            <ion-label style="font-size:13px;line-height: 25px;font-weight: bold;color: #6a6a6a;">
+                            38457200J
+                            </ion-label>
+                          </ion-col>
+                          <!-- <ion-col offset="1" size="10">
+                            <img src="../../../assets/Paynow.jpg" style="width:150px;height:150px;padding:10px ">
+                          </ion-col> -->
+                        </ion-col>
+                      </ion-row>
+
+                    </ion-col>
+
+
+                  </ion-row>
+
+                  <ion-row style="width: 100%;padding-top:10px" size="12" *ngIf="chkBankTransfer">
+                    <ion-col size-md="12" size-xs="12" size-lg="12">
+                      <ion-row size="12" style="border: 1px solid rgba(0,0,0,.1)">
+                        <ion-col>
+                          <ion-row size="12" class="ion-align-self-center ion-text-center"
+                            style="background-color:#fbfbfb;font-size:16px;color:#5D6167">
+
+                            <ion-col
+                              style="font-weight: bold;padding-top:5px;padding-bottom:5px;padding-left:20px;padding-right:20px"
+                              class="ion-align-self-center ion-text-left" size-lg="12" size-md="12">
+                              UEN Bank Transfer <br />
+                              <span style="font-weight: normal;font-size:14px">Make your payment directly into our bank
+                                account per UEN number below. Please use your Order No as the payment reference. Upload payment screenshot of either image or sms of successful interbank transfers.  Your order will not be processed
+                                until the funds have received in our account.</span>
+                            </ion-col>
+                          </ion-row>
+
+                        </ion-col>
+                      </ion-row>
+
+                      <ion-row size="12" style="font-family: 'Poppins', sans-serif;">
+                        <ion-col size="6" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                          <ion-col offset="1" size="10">
+                            <ion-label style="font-size:13px;line-height: 25px;font-weight: bold;color: #6a6a6a;">
+                              UEN (Code) :
+                            </ion-label>
+                          </ion-col>
+                        </ion-col>
+                        <ion-col size="6" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                          <ion-col offset="1" size="10">
+                            <ion-label style="font-size:13px;line-height: 25px;font-weight: bold;color: #6a6a6a;">
+                              38457200J
+                            </ion-label>
+                          </ion-col>
+                          <!-- <ion-col offset="1" size="10">
+                            <img src="../../../assets/bank.jpg" style="width:350px;height:350px;padding:10px ">
+                          </ion-col> -->
+                        </ion-col>
+                      </ion-row>
+
+
+                    </ion-col>
+                  </ion-row>
+
+                  <ion-row size="12" class="ion-align-self-right" style="font-size:14px;">
+                    <ion-col>
+                      <ion-row style="float: right;">
+                        <ion-button style="width:300px;height:39px;float: right;font-size:13px;" color="vibrant"
+                          expand="round" (click)="tapupload()">
+                          <!-- <fa-icon icon="cart-plus" style="font-size: 13px; margin-right:5px"></fa-icon> -->
+
+                          UPLOAD PAYMENT SCREENSHOT
+                        </ion-button>
+                      </ion-row>
+                    </ion-col>
+                  </ion-row>
+                </div>
+
+
+                <ion-row style="width: 100%;padding-top:10px" size="12">
+                  <ion-col size-md="12" size-xs="12" size-lg="12">
+                    <ion-row size="12" style="border: 1px solid rgba(0,0,0,.1)">
+                      <ion-col>
+                        <ion-row size="12" class="ion-align-self-center ion-text-center"
+                          style="background-color:#fbfbfb;height:47px;font-size:16px;color:#5D6167">
+
+                          <ion-col style="margin-left:20px" class="ion-align-self-center ion-text-left" size-lg="4"
+                            size-md="4">
+                            Order Details
+                          </ion-col>
+                        </ion-row>
+
+                      </ion-col>
+                    </ion-row>
+
+                    <ion-row size="12" style="font-family: 'Poppins', sans-serif;">
+                      <ion-col size="6" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                        <ion-col style="padding-left:25px;padding-right:25px;">
+                          <ion-label style="font-size:13px;line-height: 25px;font-weight: bold;color: #6a6a6a;">
+                            Product
+                          </ion-label>
+                        </ion-col>
+
+                      </ion-col>
+                      <ion-col size="6" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                        <ion-col style="padding-left:25px;padding-right:25px;">
+                          <ion-label style="font-size:13px;line-height: 25px;font-weight: bold;color: #6a6a6a;">
+                            Total
+                          </ion-label>
+                        </ion-col>
+                      </ion-col>
+                    </ion-row>
+
+
+                    <ion-grid style="padding:0px; margin:0px"
+                      *ngFor="let orderdetCat of obsOrder.Order_Detail_Categories; let i = index">
+                      <ion-row size="12" style="font-family: 'Poppins', sans-serif;">
+                        <ion-col size="12" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                          <ion-col style="padding-left:25px;padding-right:25px;">
+                            <ion-label style="font-weight: bold;font-size:13px;line-height: 25px;color: #6a6a6a;">
+                              {{orderdetCat.Category_Code}}
+                            </ion-label>
+                          </ion-col>
+                        </ion-col>
+                      </ion-row>
+
+                      <ion-row size="12" style="font-family: 'Poppins', sans-serif;"
+                        *ngFor="let orderdet of orderdetCat.Order_Detail; let i = index">
+                        <ion-col size="6" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                          <ion-col style="padding-left:25px;padding-right:25px;">
+                            <ion-label style="font-size:13px;line-height: 25px;font-weight: 400;color: #6a6a6a;">
+                              {{ orderdet.Product_Name}} x {{ orderdet.Qty}}
+                            </ion-label>
+                          </ion-col>
+                        </ion-col>
+                        <ion-col size="6" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                          <ion-col style="padding-left:25px;padding-right:25px;">
+                            <ion-label style="font-size:13px;line-height: 25px;font-weight: 400;color: #6a6a6a;">
+                              {{ orderdet.Format_Sub_Total}}
+                            </ion-label>
+                          </ion-col>
+                        </ion-col>
+                      </ion-row>
+
+                      <ion-row size="12" style="font-family: 'Poppins', sans-serif;">
+                        <ion-col size="6" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                          <ion-col style="padding-left:25px;padding-right:25px;">
+                            <ion-label style="font-size:13px;line-height: 25px;font-weight: 400;color: #6a6a6a;">
+                              Subtotal
+                            </ion-label>
+                          </ion-col>
+                        </ion-col>
+                        <ion-col size="6" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                          <ion-col style="padding-left:25px;padding-right:25px;">
+                            <ion-label style="font-size:13px;line-height: 25px;font-weight: 400;color: #6a6a6a;">
+                              {{orderdetCat.Format_Sub_Total}}
+                            </ion-label>
+                          </ion-col>
+                        </ion-col>
+                      </ion-row>
+
+                    </ion-grid>
+
+                    <ion-row size="12" style="font-family: 'Poppins', sans-serif;">
+                      <ion-col size="6" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                        <ion-col style="padding-left:25px;padding-right:25px;">
+                          <ion-label style="font-size:13px;line-height: 25px;font-weight: bold;color: #6a6a6a;">
+                            Total :
+                          </ion-label>
+                        </ion-col>
+                      </ion-col>
+                      <ion-col size="6" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                        <ion-col style="padding-left:25px;padding-right:25px;">
+                          <ion-label style="font-size:13px;line-height: 25px;font-weight: 400;color: #6a6a6a;">
+                            {{this.obsOrder.Format_Sub_Total}}
+                          </ion-label>
+                        </ion-col>
+                      </ion-col>
+                    </ion-row>
+
+                    <ion-row size="12" style="font-family: 'Poppins', sans-serif;">
+                      <ion-col size="6" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                        <ion-col style="padding-left:25px;padding-right:25px;">
+                          <ion-label style="font-size:13px;line-height: 25px;font-weight: bold;color: #6a6a6a;">
+                            Shipping :
+                          </ion-label>
+                        </ion-col>
+                      </ion-col>
+                      <ion-col size="6" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                        <ion-col style="padding-left:25px;padding-right:25px;">
+                          <ion-label style="font-size:13px;line-height: 25px;font-weight: 400;color: #6a6a6a;">
+                            {{this.obsOrder.Format_Shipping_Amount}}
+                          </ion-label>
+                        </ion-col>
+                      </ion-col>
+                    </ion-row>
+
+                    <ion-row size="12" style="font-family: 'Poppins', sans-serif;">
+                      <ion-col size="6" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                        <ion-col style="padding-left:25px;padding-right:25px;">
+                          <ion-label style="font-size:13px;line-height: 25px;font-weight: bold;color: #6a6a6a;">
+                            Total :
+                          </ion-label>
+                        </ion-col>
+                      </ion-col>
+                      <ion-col size="6" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+
+                        <ion-col style="padding-left:25px;padding-right:25px;">
+                          <ion-label style="font-size:13px;line-height: 25px;font-weight: 400;color: #6a6a6a;">
+                            {{this.obsOrder.Format_Total}}
+                          </ion-label>
+                        </ion-col>
+                      </ion-col>
+                    </ion-row>
+
+
+                  </ion-col>
+
+
+                </ion-row>
+
+                <ion-grid>
+
+                  <ion-row style="width: 100%;" size="12">
+                    <ion-col size-md="6" size-xs="12" size-lg="6"
+                      style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                      <ion-row size="12" style="border-bottom: 1px solid rgba(0,0,0,.1)">
+                        <ion-col>
+                          <ion-row size="12" class="ion-align-self-center ion-text-center"
+                            style="background-color:#fbfbfb;height:47px;font-size:16px;color:#5D6167">
+
+                            <ion-col style="margin-left:20px" class="ion-align-self-center ion-text-left" size="12">
+                              Billing Address
+                            </ion-col>
+                          </ion-row>
+
+                        </ion-col>
+                      </ion-row>
+                      <ion-row size="12">
+                        <ion-col>
+
+                          <ion-row size="12" class="ion-align-self-center" style="margin-top:10px;font-size:14px;">
+                            <ion-col offset="1" size="10">
+                              <ion-label style="font-size:13px;line-height: 25px;font-weight: 400;color: #6a6a6a;">
+                                {{ this.obsOrder.Billing_Street_Address1 }} <br />
+                                {{ this.obsOrder.Billing_Street_Address2 }} <br />
+                                {{ this.obsOrder.Billing_Country }}
+                              </ion-label>
+                              <br />
+                              <ion-label style="font-size:13px;line-height: 25px;font-weight: 400;color: #6a6a6a;">
+                                {{ this.obsOrder.Billing_Postcode }}
+                              </ion-label>
+                              <br />
+                              <ion-label style="font-size:13px;line-height: 25px;font-weight: 400;color: #6a6a6a;">
+                                <fa-icon icon="user" style="font-size: 13px; margin-right:5px"></fa-icon>
+                                {{ this.obsOrder.Billing_First_Name }} {{ ' ' }} {{ this.obsOrder.Billing_Last_Name }}
+                              </ion-label>
+                              <br />
+                              <ion-label style="font-size:13px;line-height: 25px;font-weight: 400;color: #6a6a6a;">
+                                <fa-icon icon="phone-alt" style="font-size: 13px; margin-right:5px"></fa-icon>
+                                {{ this.obsOrder.Billing_Phone }}
+                              </ion-label>
+                              <br />
+                              <ion-label
+                                style="padding-bottom:40px !important;font-size:13px;line-height: 25px;font-weight: 400;color: #6a6a6a;">
+                                <fa-icon icon="envelope" style="font-size: 13px; margin-right:5px"></fa-icon>
+                                {{ this.obsOrder.Billing_Email }}
+                              </ion-label>
+                            </ion-col>
+
+
+                          </ion-row>
+
+
+
+
+
+
+                        </ion-col>
+                      </ion-row>
+                    </ion-col>
+
+                    <ion-col size-md="6" size-xs="12" size-lg="6" style="border: 1px solid rgba(0,0,0,.1);">
+                      <ion-row size="12" style="border-bottom: 1px solid rgba(0,0,0,.1)">
+                        <ion-col>
+                          <ion-row size="12" class="ion-align-self-center ion-text-center"
+                            style="background-color:#fbfbfb;height:47px;font-size:16px;color:#5D6167">
+
+                            <ion-col style="margin-left:20px" class="ion-align-self-center ion-text-left" size="12">
+                              Shipping Address
+                            </ion-col>
+                          </ion-row>
+
+                        </ion-col>
+                      </ion-row>
+                      <ion-row size="12">
+                        <ion-col>
+
+                          <ion-row size="12" class="ion-align-self-center" style="margin-top:10px;font-size:14px;">
+                            <ion-col offset="1" size="10">
+                              <ion-label style="font-size:13px;line-height: 25px;font-weight: 400;color: #6a6a6a;">
+                                {{ this.obsOrder.Shipping_Street_Address1 }} <br />
+                                {{ this.obsOrder.Shipping_Street_Address2 }} <br />
+                                {{ this.obsOrder.Shipping_Country }}
+                              </ion-label>
+                              <br />
+                              <ion-label style="font-size:13px;line-height: 25px;font-weight: 400;color: #6a6a6a;">
+                                {{ this.obsOrder.Shipping_Postcode }}
+                              </ion-label>
+                              <br />
+                              <ion-label style="font-size:13px;line-height: 25px;font-weight: 400;color: #6a6a6a;">
+                                <fa-icon icon="user" style="font-size: 13px; margin-right:5px"></fa-icon>
+                                {{ this.obsOrder.Shipping_First_Name }} {{ ' ' }} {{ this.obsOrder.Shipping_Last_Name }}
+                              </ion-label>
+                              <br />
+                              <ion-label style="font-size:13px;line-height: 25px;font-weight: 400;color: #6a6a6a;">
+                                <fa-icon icon="phone-alt" style="font-size: 13px; margin-right:5px"></fa-icon>
+                                {{ this.obsOrder.Shipping_Phone }}
+                              </ion-label>
+                              <br />
+                              <ion-label
+                                style="padding-bottom:40px !important;font-size:13px;line-height: 25px;font-weight: 400;color: #6a6a6a;">
+                                <fa-icon icon="envelope" style="font-size: 13px; margin-right:5px"></fa-icon>
+                                {{ this.obsOrder.Shipping_Email }}
+                              </ion-label>
+                            </ion-col>
+
+
+                          </ion-row>
+
+
+
+
+
+
+                        </ion-col>
+                      </ion-row>
+                    </ion-col>
+                  </ion-row>
+
+
+
+                </ion-grid>
+
+
+              </ion-col>
+
+            </ion-row>
+          </ion-col>
+
+
+
+
+
+        </ion-row>
+
+
+      </ion-grid>
+    </perfect-scrollbar>
+  </form>
+  <!-- </perfect-scrollbar> -->
+</ion-content>

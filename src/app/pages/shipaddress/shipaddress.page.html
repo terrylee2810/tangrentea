@@ -1,0 +1,263 @@
+
+<ion-content [fullscreen]="true">
+
+  <perfect-scrollbar style="height: 100%;width:100%;">
+    <form name="form" #f="ngForm" class="formGroup">
+
+      <!-- <div class="heading ion-text-center" style="width:100%;">
+        <h3 style="color: #555 !important;" class="ion-text-center">
+          <a style="cursor: pointer;" (click)="back()">
+            <em class="h5">
+              My Address
+            </em>
+          </a><em class="h5">&nbsp;/ Shipping Address</em>
+        </h3>
+      </div> -->
+      <ion-grid>
+
+        <ion-grid>
+          <ion-row style="width: 100%;" size="12">
+            <ion-col size-md="10" size-xs="12" size-lg="10" offset-lg="1" offset-md="1" offset-xs="0">
+              <ion-row style="width: 100%;" size="12">
+                <ion-col size-md="3" size-xs="12" size-lg="3">
+  
+                  <ion-row size="12" style="font-family: 'Poppins', sans-serif;color:#5D6167">
+                    <ion-col style="padding-left:10px;padding-right:50px;">
+                      <ion-row size="12" class="ion-align-self-center" style="margin-top:10px;font-size:16px;">
+                        <ion-col size="12">
+                          <ion-row style="margin-bottom:10px">
+                            <div class="block block-collapsible-nav account-nav">
+                              <div class="block-title block-collapsible-nav account-nav-title">
+                                <h3>My Account</h3>
+                              </div>
+                              <div class="content block-collapsible-nav account-nav-content"
+                                id="block-collapsible-nav account-nav">
+                                <ul  style="padding-inline-start: 15px;" >
+                                  <div  *ngFor="let menu of obsMenu;  let s=index">
+                                    <li class="nav item"><a href="{{menu.url}}"  [ngStyle]="{'font-weight':menu.bold ? 'bold' : 'normal' }" >{{menu.title}}</a></li>
+                                  </div>
+                                </ul>
+                              </div>
+                            </div>
+                          </ion-row>
+                        </ion-col>
+  
+  
+                      </ion-row>
+  
+  
+  
+                    </ion-col>
+                  </ion-row>
+  
+  
+  
+  
+                </ion-col>
+  
+                <ion-col size-md="9" size-xs="12" size-lg="9">
+                  <ion-row size="12">
+                    <ion-col style="padding-left:10px;padding-right:50px;">
+                      <ion-row size="12" class="ion-align-self-center ion-text-center"
+                        style="border-bottom: 1px solid rgba(0,0,0,.1);background-color:#fbfbfb;height:47px;font-size:18px;color:#5D6167">
+  
+                        <ion-col class="ion-align-self-center ion-text-left" size-lg="4" size-md="4">
+                          Shipping Address
+                        </ion-col>
+  
+                      </ion-row>
+  
+                    </ion-col>
+                  </ion-row>
+                  <ion-row size="12" style="font-family: 'Poppins', sans-serif;color:#5D6167">
+                    <ion-col style="padding-left:10px;padding-right:50px;">
+                      <ion-row size="12" class="ion-align-self-center" style="margin-top:10px;font-size:16px;">
+                        <ion-col size="12">
+                          <ion-row style="margin-bottom:10px">
+                            <ion-col class="stackfont ion-text-left stacklabel" size-lg="6">
+                              <ion-label>First name *</ion-label>
+                              <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+
+                                <ion-input class="ion-no-padding" name="Shipping_First_Name"
+                                  [(ngModel)]="obs.Shipping_First_Name" #ShippingFirstName="ngModel" required
+                                  placeholder="First name"></ion-input>
+
+                              </ion-item>
+                              <div>
+                                <ion-label *ngIf="ShippingFirstName.invalid && ShippingFirstName.dirty"
+                                  class="state-error">{{
+                                  error_messages.Shipping_First_Name.required }}
+                                </ion-label>
+                              </div>
+
+                            </ion-col>
+                            <ion-col class="stackfont ion-text-left stacklabel" size-lg="6">
+                              <ion-label>Last name *</ion-label>
+                              <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                                <ion-input class="ion-no-padding" name="Shipping_Last_Name"
+                                  [(ngModel)]="obs.Shipping_Last_Name" #ShippingLastName="ngModel" required
+                                  placeholder="Last name"></ion-input>
+                              </ion-item>
+                              <div>
+                                <ion-label *ngIf="ShippingLastName.invalid && ShippingLastName.dirty" class="state-error">
+                                  {{
+                                  error_messages.Shipping_Last_Name.required }}
+                                </ion-label>
+                              </div>
+                            </ion-col>
+                          </ion-row>
+
+                          <ion-row style="margin-bottom:10px">
+                            <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                              <ion-label>Company name (optional)</ion-label>
+                              <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                                <ion-input class="ion-no-padding" name="Shipping_Company_Name"
+                                  [(ngModel)]="obs.Shipping_Company_Name" #ShippingCompanyName="ngModel"
+                                  placeholder="Company name (Optional)"></ion-input>
+                              </ion-item>
+                            </ion-col>
+                          </ion-row>
+
+                          <ion-row style="margin-bottom:10px">
+                            <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                              <ion-label>Street address *</ion-label>
+
+                              <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                                <ion-input class="ion-no-padding" name="Shipping_Street_Address1"
+                                  [(ngModel)]="obs.Shipping_Street_Address1" #ShippingStreetAddress1="ngModel"
+                                  required placeholder="House number & street name"></ion-input>
+
+                              </ion-item>
+                              <div>
+                                <ion-label *ngIf="ShippingStreetAddress1.invalid && ShippingStreetAddress1.dirty"
+                                  class="state-error">{{
+                                  error_messages.Shipping_Street_Address1.required }}
+                                </ion-label>
+                              </div>
+                              <ion-item style="margin-top:5px"
+                                class="ion-align-self-center ion-text-left ion-no-padding">
+                                <ion-input class="ion-no-padding" name="Shipping_Street_Address2"
+                                  [(ngModel)]="obs.Shipping_Street_Address2" #ShippingStreetAddress2="ngModel"
+                                  placeholder="Apartment, suite, unit, etc.(Optional)"></ion-input>
+                              </ion-item>
+                            </ion-col>
+                          </ion-row>
+
+                          <ion-row style="margin-bottom:10px">
+                            <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                              <ion-label>Town / City (optional)</ion-label>
+                              <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                                <ion-input class="ion-no-padding" name="Shipping_City"
+                                  [(ngModel)]="obs.Shipping_City" #ShippingCity="ngModel"
+                                  placeholder="Town / City (Optional)"></ion-input>
+                              </ion-item>
+                            </ion-col>
+                          </ion-row>
+
+                          <ion-row style="margin-bottom:10px">
+                            <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                              <ion-label>Postcode / ZIP *</ion-label>
+                              <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                                <ion-input class="ion-no-padding" name="Shipping_Postcode"
+                                  [(ngModel)]="obs.Shipping_Postcode" #ShippingPostcode="ngModel" required
+                                  placeholder="Postcode / ZIP"  (paste)="onPaste($event)" (keypress)="onInput($event)"  minlength="6" maxlength="6"></ion-input>
+                              </ion-item>
+                              <div>
+                                <ion-label *ngIf="ShippingPostcode.invalid && ShippingPostcode.dirty" class="state-error">
+                                  {{ShippingPostcode.errors?.required ?  error_messages.Shipping_Postcode.required :""}}
+                                  {{ShippingPostcode.errors?.minlength ? error_messages.Shipping_Postcode.min:""}}
+                                  {{ShippingPostcode.errors?.maxlength ? error_messages.Shipping_Postcode.max:""}}
+                                </ion-label>
+                              </div>
+                            </ion-col>
+                          </ion-row>
+
+                          <ion-row style="margin-bottom:10px">
+                            <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                              <ion-label>Country *</ion-label>
+                              <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                                <ion-input class="ion-no-padding" name="Shipping_Country"
+                                  [(ngModel)]="obs.Shipping_Country" #ShippingCountry="ngModel" required
+                                  placeholder="Country *"></ion-input>
+                              </ion-item>
+                              <div>
+                                <ion-label *ngIf="ShippingCountry.invalid && ShippingCountry.dirty" class="state-error">
+                                  {{
+                                  error_messages.Shipping_Country.required }}
+                                </ion-label>
+                              </div>
+                            </ion-col>
+                          </ion-row>
+
+
+                          <ion-row style="margin-bottom:10px">
+                            <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                              <ion-label>Phone *</ion-label>
+                              <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                                <ion-input class="ion-no-padding" name="Shipping_Phone"
+                                  [(ngModel)]="obs.Shipping_Phone" #ShippingPhone="ngModel" required
+                                  placeholder="Phone"  (paste)="onPaste($event)" (keypress)="onInput($event)"  minlength="8" maxlength="8"></ion-input>
+                              </ion-item>
+                              <div>
+                                <ion-label *ngIf="ShippingPhone.invalid && ShippingPhone.dirty" class="state-error">
+                                  {{ShippingPhone.errors?.required ?  error_messages.Shipping_Phone.required :""}}
+                                  {{ShippingPhone.errors?.minlength ? error_messages.Shipping_Phone.min:""}}
+                                  {{ShippingPhone.errors?.maxlength ? error_messages.Shipping_Phone.max:""}}
+                                </ion-label>
+                              </div>
+                            </ion-col>
+                          </ion-row>
+
+                          <ion-row style="margin-bottom:10px">
+                            <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                              <ion-label>Email address *</ion-label>
+                              <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                                <ion-input class="ion-no-padding" name="Shipping_Email"
+                                  [(ngModel)]="obs.Shipping_Email" #ShippingEmail="ngModel" required
+                                  placeholder="Email address" [email]="true"></ion-input>
+                              </ion-item>
+                              <div>
+                                <ion-label *ngIf="ShippingEmail.invalid && ShippingEmail.dirty" class="state-error">
+                                  {{ShippingEmail.errors?.required ?  error_messages.Shipping_Email.required :""}}
+                                  {{ShippingEmail.errors?.email ? error_messages.Shipping_Email.invalid_email:""}}
+                                </ion-label>
+                              </div>
+                            </ion-col>
+                          </ion-row>
+
+
+                          <ion-row size="12" style="float: right;">
+          
+                            <ion-button style=" width:144px;height:29px;float: right;font-size:13px;margin-right:10px" color="vibrant"
+                              expand="block" (click)="onSubmit()">
+                              <!-- <fa-icon icon="cart-plus" style="font-size: 13px; margin-right:5px"></fa-icon> -->
+              
+                              SAVE CHANGES
+                            </ion-button>
+                          </ion-row>
+                    
+                        </ion-col>
+
+
+                      </ion-row>
+
+
+                    </ion-col>
+                  </ion-row>
+
+  
+  
+  
+                </ion-col>
+  
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+     
+
+
+      </ion-grid>
+    </form>
+  </perfect-scrollbar>
+</ion-content>

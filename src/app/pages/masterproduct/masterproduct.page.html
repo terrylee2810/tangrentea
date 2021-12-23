@@ -1,0 +1,157 @@
+
+<!-- <div id="canvasContainer"></div>
+<canvas id="myCanvas" width="2481" height="1690"></canvas> -->
+<ion-content [fullscreen]="true">
+  <!-- <div class="ion-canvas">
+    <canvas #canvas></canvas>
+</div> -->
+<perfect-scrollbar style="height: 100%;width:100%;">
+  <form name="form" #f="ngForm" class="formGroup">
+
+      <div class="heading ion-text-center" style="width:100%;">
+        <h3 style="color: #555 !important;" class="ion-text-center">
+          <a href="#" title="Go to Home Page" ng-click="ToLocation('/')">
+          <em class="h5">
+            Home
+          </em>
+        </a><em class="h5">&nbsp;/ Register New Member</em></h3>
+      </div>
+      <ion-grid>
+        <ion-row style="width: 100%;" size="12">
+       
+            <ion-col size-md="10" size-xs="12" size-lg="10" offset-lg="1" offset-md="1"
+            offset-xs="0">
+
+            <ion-row >
+              <ion-col size="12" size-lg="6" >
+                <ion-row>
+                  <ion-col class="stackfont" size="12" size-lg="4">
+                    <ion-label>Product Name</ion-label>
+                  </ion-col>
+                  <ion-col class="stackfont" size="12" size-lg="8">
+                    <ion-item lines="none">
+                      <ion-input name="First_Name" 
+                      [(ngModel)]="obs.First_Name"
+                        #firstName="ngModel" 
+                       required placeholder="Enter Your First name"
+                       ></ion-input>
+                    </ion-item>
+                    <div>
+                      <ion-label *ngIf="firstName.invalid && firstName.dirty" class="state-error">{{ error_messages.Last_Name.required }}
+                      </ion-label>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              <ion-col size="12" size-lg="6">
+                <ion-row>
+                  <ion-col class="stackfont" size="12" size-lg="4">
+                    <ion-label>Last Name</ion-label>
+                  </ion-col>
+                  <ion-col class="stackfont" size="12" size-lg="8">
+                    <ion-item lines="none">
+                      <ion-input name="Last_Name" 
+                      [(ngModel)]="obs.Last_Name"
+                        #lastName="ngModel" 
+                       required placeholder="Enter Your Last name"
+                       ></ion-input>
+                    </ion-item>
+                    <div >
+                      <ion-label *ngIf="lastName.invalid && lastName.dirty" class="state-error">{{ error_messages.Last_Name.required }}
+                      </ion-label>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+      
+            <ion-row >
+              <ion-col size="12" size-lg="6">
+                <ion-row>
+                  <ion-col class="stackfont" size="12" size-lg="4">
+                    <ion-label>Email</ion-label>
+                  </ion-col>
+                  <ion-col class="stackfont" size="12" size-lg="8">
+                    <ion-item lines="none">
+                      <ion-input name="Email" 
+                      [(ngModel)]="obs.User_Email"
+                        #email="ngModel" 
+                       required placeholder="Enter Your Email"
+                       ></ion-input>
+                    </ion-item>
+                    <div >
+                      <ion-label *ngIf="email.invalid && email.dirty" class="state-error">{{ error_messages.Email.required }}
+                      </ion-label>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+
+            <ion-row >
+              <ion-col size="12" size-lg="6" >
+                <ion-row>
+                  <ion-col class="stackfont" size="12" size-lg="4">
+                    <ion-label>Password</ion-label>
+                  </ion-col>
+                  <ion-col class="stackfont" size="12" size-lg="8">
+                    <ion-item lines="none">
+                      <ion-input type="password" name="Password" 
+                      [(ngModel)]="obs.Password"
+                        #password="ngModel" 
+                       required placeholder="Enter Your Password"
+                       (keyup)="mustmatch(confirmpassword,password)"
+                       ></ion-input>
+                    </ion-item>
+                    <div>
+                      <ion-label *ngIf="password.invalid && password.dirty" class="state-error">{{ error_messages.Password.required }}
+                      </ion-label>
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+              <ion-col size="12" size-lg="6">
+                <ion-row>
+                  <ion-col class="stackfont" size="12" size-lg="4">
+                    <ion-label>Confirm Password</ion-label>
+                  </ion-col>
+                  <ion-col class="stackfont" size="12" size-lg="8">
+                    <ion-item lines="none">
+                      <ion-input type="password" name="Confirm_Password" 
+                      [(ngModel)]="obs.Confirm_Password"
+                        #confirmpassword="ngModel" 
+                       required placeholder="Enter Your Confirm Password"
+                       (keyup)="mustmatch(confirmpassword,password)"
+                       ></ion-input>
+                    </ion-item>
+                    <div >
+                      <ion-label *ngIf="confirmpassword.errors?.mustMatch && confirmpassword.dirty" class="state-error">{{ error_messages.Confirm_Password.password_mismatch }}
+                      </ion-label> 
+                      <ion-label *ngIf="confirmpassword.errors?.required && confirmpassword.dirty" class="state-error">{{ error_messages.Confirm_Password.required }}
+                      </ion-label>
+                     
+
+                      
+                    </div>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+      
+            <ion-row size="12" style="float: right;">
+              
+            <ion-button  style=" width:144px;height:29px;float: right;font-size:13px;margin-right:10px" color="vibrant" expand="block" (click)="onSubmit()">
+              <fa-icon icon="cart-plus" style="font-size: 13px; margin-right:5px"></fa-icon>
+            
+             SUBMIT
+            </ion-button>
+            </ion-row>
+            </ion-col>
+
+          </ion-row>
+      
+     
+    </ion-grid>
+  </form>
+</perfect-scrollbar>
+</ion-content>

@@ -1,0 +1,892 @@
+<ion-content [fullscreen]="true" *ngIf="this.isLoaded==true">
+  <form name="form" #f="ngForm" class="formGroup">
+    <perfect-scrollbar style="height: 100%;width:100%;">
+      <ion-grid class="ion-no-padding"
+        style="width:100%;margin-top:-8px;padding:0;margin: 0;font-family: 'Poppins', sans-serif;">
+
+        <div class="heading ion-text-center" style="width:100%;">
+          <h3 style="color: #555 !important;" class="ion-text-center">
+            {{ this.data?.act == 'editorder' ? 'Checkout (Edit)':'Checkout'}} 
+            </h3>
+        </div>
+
+        <ion-row size="12">
+          <ion-col style="padding-left:5px;padding-right:5px" size-md="10" size-xs="12" size-lg="10" offset-lg="1" offset-md="1" offset-xs="0">
+            <ion-row size="12" class="ion-align-self-center ion-text-center"
+              style="border-bottom: 1px solid rgba(0,0,0,.1);background-color:#fbfbfb;height:47px;font-size:18px;color:#5D6167">
+
+              <ion-col class="ion-align-self-center ion-text-left" size-lg="12" size-md="12">
+                Step 4: Verify the Order
+              </ion-col>
+
+            </ion-row>
+
+          </ion-col>
+        </ion-row>
+
+        <ion-grid>
+          <ion-row style="width: 100%;" size="12">
+            <ion-col class="ion-align-self-center" size-md="10" size-xs="12" size-lg="10" offset-lg="1" offset-md="1"
+              offset-xs="0">
+              <ion-row style="width: 100%;" size="12">
+                <ion-col class="ion-align-self-top"  size-md="7" size-xs="12" size-lg="7">
+                  <ion-row size="12" *ngIf="'Admin;Admin3;'.includes(this.obsUserSession.Member_Type+';') && this.data.act == 'editorder'">
+                    <ion-col class="ion-text-left" size="12" >
+                      <a [routerLink]="[]" (click)="backOrderList()" 
+                      style="text-decoration: underline;font-size:16px;">Back to order view</a>
+                    </ion-col>
+                  </ion-row>
+                
+                  <ion-row *ngIf="'Admin;Admin3;'.includes(this.obsUserSession.Member_Type+';') && this.data.act == 'editorder'" size="12">
+                    <ion-col style="padding-left:15px;padding-right:15px;">
+                      <ion-row size="12" class="ion-align-self-center ion-text-center"
+                        style="border-bottom: 1px solid rgba(0,0,0,.1);background-color:#fbfbfb;height:47px;font-size:18px;color:#5D6167">
+
+                        <ion-col class="ion-align-self-center ion-text-left" size-lg="4" size-md="4">
+                          Order Info
+                        </ion-col>
+
+                      </ion-row>
+
+                    </ion-col>
+                  </ion-row>
+
+                  <ion-row  *ngIf="'Admin;Admin3;'.includes(this.obsUserSession.Member_Type+';') && this.data.act == 'editorder'" size="12" style="font-family: 'Poppins', sans-serif;color:#5D6167">
+                    <ion-col style="padding-left:15px;padding-right:15px;">
+                      <ion-row size="12" class="ion-align-self-center" style="margin-top:10px;font-size:16px;">
+                        <ion-col size="12">
+                          <ion-row style="margin-bottom:10px">
+                            <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                              <ion-label>Order No</ion-label>
+                              <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                                <ion-input class="ion-no-padding" name="Order_No"
+                                  [(ngModel)]="obsOrder.Order_No" #OrderNo="ngModel"
+                                  placeholder="Order No"></ion-input>
+                              </ion-item>
+                            </ion-col>
+                          </ion-row>
+
+                          <ion-row style="margin-bottom:10px">
+                            <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                              <ion-label>Order Status</ion-label>
+                              <ion-item lines="none"   class="ion-no-padding">
+                                <ion-select [(ngModel)]="obsOrder.Order_Status"   name="Order_Status" style="max-width: 100% !important;font-weight: 500;" interface="popover"
+                                  class="ion-no-padding" placeholder="Select a Order Status" required>
+                                  <ion-select-option *ngFor="let item of orderSel" value="{{item.Code}}">{{item.Name}}
+                                  </ion-select-option>
+                                </ion-select>
+                              </ion-item>
+                            </ion-col>
+                          </ion-row>
+
+                          
+                          <ion-row style="margin-bottom:10px">
+                            <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                              <ion-label>Payment Verification</ion-label>
+                              <ion-item lines="none"  class="ion-no-padding">
+                                <ion-select [(ngModel)]="obsOrder.Payment_Status"   name="Payment_Status" style="max-width: 100% !important;font-weight: 500;" interface="popover"
+                                  class=" ion-no-padding" placeholder="Select a Payment Status" required>
+                                  <ion-select-option *ngFor="let item of paymentSel" value="{{item.Code}}">{{item.Name}}
+                                  </ion-select-option>
+                                </ion-select>
+                              </ion-item> 
+                            </ion-col>
+                          </ion-row>
+
+                          <ion-row style="margin-bottom:10px">
+                            <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                              <ion-label>Delivery Status</ion-label>
+                              <ion-item lines="none"  class="ion-no-padding">
+                                <ion-select [(ngModel)]="obsOrder.Delivery_Status"   name="Delivery_Status" style="max-width: 100% !important;font-weight: 500;" interface="popover"
+                                  class=" ion-no-padding" placeholder="Select a Delivery Status" required>
+                                  <ion-select-option *ngFor="let item of statusSel" value="{{item.Code}}">{{item.Name}}
+                                  </ion-select-option>
+                                </ion-select>
+                              </ion-item>
+                            </ion-col>
+                          </ion-row>
+
+                          <ion-row style="margin-bottom:10px">
+                            <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                              <ion-label>Packaging Status</ion-label>
+                              <ion-item lines="none"  class="ion-no-padding">
+                                <ion-select [(ngModel)]="obsOrder.Packaging_Status"   name="Packaging_Status" style="max-width: 100% !important;font-weight: 500;" interface="popover"
+                                  class=" ion-no-padding" placeholder="Select a Packaging Status" required>
+                                  <ion-select-option *ngFor="let item of statusSel" value="{{item.Code}}">{{item.Name}}
+                                  </ion-select-option>
+                                </ion-select>
+                              </ion-item>
+                            </ion-col>
+                          </ion-row>
+                          <ion-row style="margin-bottom:10px">
+                            <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                              <ion-label>Delivery Date</ion-label>
+                              <!-- <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                                <ion-input class="ion-no-padding" name="Delivery_Date"
+                                  [(ngModel)]="obsOrder.Delivery_Date" #DeliveryDate="ngModel" 
+                                  placeholder="Delivery Date"></ion-input>
+                              </ion-item> -->
+
+                              
+                              <ion-item lines="none" class="ion-no-padding">
+                                <ion-input #useremail="ngModel"  [owlDateTimeTrigger]="dt"
+                                  name="Delivery_Date" [(ngModel)]="obsOrder.Delivery_Date" placeholder="Enter Your Date">
+                                </ion-input>
+                              </ion-item>
+                              <input  [(ngModel)]="selectedMoment" name="inputDate" [owlDateTime]="dt"  style="width:0px !important ;height:0px !important;
+                              margin:0px!important;padding:0px !important;border:0px">
+                              <owl-date-time #dt [pickerType]="'calendar'" (afterPickerClosed)="onChangeDate(dt)">
+                              </owl-date-time>
+                            </ion-col>
+                          </ion-row>
+
+                          <ion-row style="margin-bottom:10px">
+                            <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                              <ion-label>Delivery Time</ion-label>
+
+                              
+                             <ion-item lines="none"  class="ion-no-padding">
+                                <ion-select [(ngModel)]="obsOrder.Delivery_TimeS"   name="Delivery_TimeS" style="max-width: 100% !important;font-weight: 500;" interface="popover"
+                                  class=" ion-no-padding" placeholder="Select a Delivery Time" required>
+                                  <ion-select-option *ngFor="let item of timeSel" value="{{item.Code}}">{{item.Name}}
+                                  </ion-select-option>
+                                </ion-select>
+                              </ion-item> 
+                            </ion-col>
+                          </ion-row>
+                   
+                        </ion-col>
+
+
+                      </ion-row>
+
+
+                    </ion-col>
+                  </ion-row>
+
+
+                  <ion-row size="12">
+                    <ion-col style="padding-left:15px;padding-right:15px;">
+                      <ion-row size="12" class="ion-align-self-center ion-text-center"
+                        style="border-bottom: 1px solid rgba(0,0,0,.1);background-color:#fbfbfb;height:47px;font-size:18px;color:#5D6167">
+
+                        <ion-col class="ion-align-self-center ion-text-left" size-lg="4" size-md="4">
+                          Billing details
+                        </ion-col>
+
+                      </ion-row>
+
+                      <ion-row size="12" style="font-family: 'Poppins', sans-serif;color:#5D6167">
+                        <ion-col >
+                          <ion-row size="12" class="ion-align-self-center" style="margin-top:10px;font-size:16px;">
+                            <ion-col size="12">
+                              <ion-row style="margin-bottom:10px">
+                                <ion-col class="stackfont ion-text-left stacklabel" size-lg="6">
+                                  <ion-label>First name *</ion-label>
+                                  <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+    
+                                    <ion-input class="ion-no-padding" name="Billing_First_Name"
+                                      [(ngModel)]="obsOrder.Billing_First_Name" #BillingFirstName="ngModel" required
+                                      placeholder="First name"></ion-input>
+    
+                                  </ion-item>
+                                  <div>
+                                    <ion-label *ngIf="BillingFirstName.invalid && BillingFirstName.dirty"
+                                      class="state-error">{{
+                                      error_messages.Billing_First_Name.required }}
+                                    </ion-label>
+                                  </div>
+    
+                                </ion-col>
+                                <ion-col class="stackfont ion-text-left stacklabel" size-lg="6">
+                                  <ion-label>Last name *</ion-label>
+                                  <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                                    <ion-input class="ion-no-padding" name="Billing_Last_Name"
+                                      [(ngModel)]="obsOrder.Billing_Last_Name" #BillingLastName="ngModel" required
+                                      placeholder="Last name"></ion-input>
+                                  </ion-item>
+                                  <div>
+                                    <ion-label *ngIf="BillingLastName.invalid && BillingLastName.dirty" class="state-error">
+                                      {{
+                                      error_messages.Billing_Last_Name.required }}
+                                    </ion-label>
+                                  </div>
+                                </ion-col>
+                              </ion-row>
+    
+                              <ion-row style="margin-bottom:10px">
+                                <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                                  <ion-label>Company name (optional)</ion-label>
+                                  <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                                    <ion-input class="ion-no-padding" name="Billing_Company_Name"
+                                      [(ngModel)]="obsOrder.Billing_Company_Name" #BillingCompanyName="ngModel"
+                                      placeholder="Company name (Optional)"></ion-input>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+    
+                              <ion-row style="margin-bottom:10px">
+                                <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                                  <ion-label>Street address *</ion-label>
+    
+                                  <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                                    <ion-input class="ion-no-padding" name="Billing_Street_Address1"
+                                      [(ngModel)]="obsOrder.Billing_Street_Address1" #BillingStreetAddress1="ngModel"
+                                      required placeholder="House number & street name"></ion-input>
+    
+                                  </ion-item>
+                                  <div>
+                                    <ion-label *ngIf="BillingStreetAddress1.invalid && BillingStreetAddress1.dirty"
+                                      class="state-error">{{
+                                      error_messages.Billing_Street_Address1.required }}
+                                    </ion-label>
+                                  </div>
+                                  <ion-item style="margin-top:5px"
+                                    class="ion-align-self-center ion-text-left ion-no-padding">
+                                    <ion-input class="ion-no-padding" name="Billing_Street_Address2"
+                                      [(ngModel)]="obsOrder.Billing_Street_Address2" #BillingStreetAddress2="ngModel"
+                                      placeholder="Apartment, suite, unit, etc.(Optional)"></ion-input>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+    
+                              <ion-row style="margin-bottom:10px">
+                                <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                                  <ion-label>Town / City (optional)</ion-label>
+                                  <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                                    <ion-input class="ion-no-padding" name="Billing_City"
+                                      [(ngModel)]="obsOrder.Billing_City" #BillingCity="ngModel"
+                                      placeholder="Town / City (Optional)"></ion-input>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+    
+                              <ion-row style="margin-bottom:10px">
+                                <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                                  <ion-label>Postcode / ZIP *</ion-label>
+                                  <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                                    <ion-input class="ion-no-padding" name="Billing_Postcode"
+                                      [(ngModel)]="obsOrder.Billing_Postcode" #BillingPostcode="ngModel" required
+                                      placeholder="Postcode / ZIP" (keyup)="onKeyUp()" (paste)="onPaste($event)" (keypress)="onInput($event)"  minlength="6" maxlength="6"></ion-input>
+                                  </ion-item>
+                                  <div>
+                                    <ion-label *ngIf="BillingPostcode.invalid && BillingPostcode.dirty" class="state-error">
+                                      {{BillingPostcode.errors?.required ?  error_messages.Billing_Postcode.required :""}}
+                                      {{BillingPostcode.errors?.minlength ? error_messages.Billing_Postcode.min:""}}
+                                      {{BillingPostcode.errors?.maxlength ? error_messages.Billing_Postcode.max:""}}
+                                    </ion-label>
+                                  </div>
+                                </ion-col>
+                              </ion-row>
+    
+                              <ion-row style="margin-bottom:10px">
+                                <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                                  <ion-label>Country *</ion-label>
+                                  <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                                    <ion-input class="ion-no-padding" name="Billing_Country"
+                                      [(ngModel)]="obsOrder.Billing_Country" #BillingCountry="ngModel" required
+                                      placeholder="Country *"></ion-input>
+                                  </ion-item>
+                                  <div>
+                                    <ion-label *ngIf="BillingCountry.invalid && BillingCountry.dirty" class="state-error">
+                                      {{
+                                      error_messages.Billing_Country.required }}
+                                    </ion-label>
+                                  </div>
+                                </ion-col>
+                              </ion-row>
+    
+    
+                              <ion-row style="margin-bottom:10px">
+                                <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                                  <ion-label>Phone *</ion-label>
+                                  <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                                    <ion-input class="ion-no-padding" name="Billing_Phone"
+                                      [(ngModel)]="obsOrder.Billing_Phone" #BillingPhone="ngModel" required
+                                      placeholder="Phone" (paste)="onPaste($event)" (keypress)="onInput($event)"  minlength="8" maxlength="8"></ion-input>
+                                  </ion-item>
+                                  <div>
+                                    <ion-label *ngIf="BillingPhone.invalid && BillingPhone.dirty" class="state-error">
+                                      {{BillingPhone.errors?.required ?  error_messages.Billing_Phone.required :""}}
+                                      {{BillingPhone.errors?.minlength ? error_messages.Billing_Phone.min:""}}
+                                      {{BillingPhone.errors?.maxlength ? error_messages.Billing_Phone.max:""}}
+                                    </ion-label>
+                                  </div>
+                                </ion-col>
+                              </ion-row>
+    
+                              <ion-row style="margin-bottom:10px">
+                                <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                                  <ion-label>Email address *</ion-label>
+                                  <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                                    <ion-input class="ion-no-padding" name="Billing_Email"
+                                      [(ngModel)]="obsOrder.Billing_Email" #BillingEmail="ngModel" required
+                                      placeholder="Email address" [email]="true"></ion-input>
+                                  </ion-item>
+                                  <div>
+                                    <ion-label *ngIf="BillingEmail.invalid && BillingEmail.dirty" class="state-error">
+                                      {{BillingEmail.errors?.required ?  error_messages.Billing_Email.required :""}}
+                                      {{BillingEmail.errors?.email ? error_messages.Billing_Email.invalid_email:""}}
+                                    </ion-label>
+                                  </div>
+                                </ion-col>
+                              </ion-row>
+    
+                              <ion-row style="margin-bottom:10px">
+                                <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                                  <ion-label>Order notes (optional)</ion-label>
+                                  <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                                    <ion-textarea rows="6" class="ion-no-padding" name="Billing_Order_Note"
+                                      [(ngModel)]="obsOrder.Billing_Order_Note" #BillingOrderNote="ngModel"
+                                      placeholder="Order notes"></ion-textarea>
+                                  </ion-item>
+                                </ion-col>
+                              </ion-row>
+                              <!-- <ion-item-divider>
+                              </ion-item-divider> -->
+                            </ion-col>
+    
+    
+                          </ion-row>
+    
+    
+                        </ion-col>
+                      </ion-row>
+                    </ion-col>
+                  </ion-row>
+                
+
+                  <ion-row size="12" *ngIf="selfChecked==false">
+                    <ion-col style="padding-left:15px;padding-right:15px;">
+                      <ion-row size="12" class="ion-align-self-center ion-text-center"
+                        style="border-bottom: 1px solid rgba(0,0,0,.1);background-color:#fbfbfb;height:47px;font-size:18px;color:#5D6167">
+
+                        <ion-col class="ion-align-self-center ion-text-left" size-lg="8" size-md="8">
+                          <!-- <ion-checkbox #id2 id="id1" (click)="tnc_onchanged()">
+                          </ion-checkbox> -->
+                          <div (click)="check_shipping()">
+                            <ion-checkbox [checked]="chkShipping" >
+                            </ion-checkbox>
+                            <ion-label style="margin-left:5px"> Ship to a different address</ion-label>
+
+                          </div>
+
+                       
+                          
+                        </ion-col>
+
+                      </ion-row>
+
+                    </ion-col>
+                  </ion-row>
+
+                  <ion-row size="12" style="font-family: 'Poppins',
+                   sans-serif;color:#5D6167" *ngIf="this.chkShipping===true">
+                    <ion-col style="padding-left:15px;padding-right:15px;">
+                      <ion-row size="12" class="ion-align-self-center" style="margin-top:10px;font-size:16px;">
+                        <ion-col size="12">
+
+                          <ion-row style="margin-bottom:10px">
+                            <ion-col class="stackfont ion-text-left stacklabel" size-lg="6">
+                              <ion-label>First name *</ion-label>
+                              <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+
+                                <ion-input class="ion-no-padding" name="Shipping_First_Name"
+                                  [(ngModel)]="obsOrder.Shipping_First_Name" #ShippingFirstName="ngModel" required
+                                  placeholder="First name"></ion-input>
+
+                              </ion-item>
+                              <div>
+                                <ion-label *ngIf="ShippingFirstName.invalid && ShippingFirstName.dirty"
+                                  class="state-error">{{
+                                  error_messages.Shipping_First_Name.required }}
+                                </ion-label>
+                              </div>
+
+                            </ion-col>
+                            <ion-col class="stackfont ion-text-left stacklabel" size-lg="6">
+                              <ion-label>Last name *</ion-label>
+                              <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                                <ion-input class="ion-no-padding" name="Shipping_Last_Name"
+                                  [(ngModel)]="obsOrder.Shipping_Last_Name" #ShippingLastName="ngModel" required
+                                  placeholder="Last name"></ion-input>
+                              </ion-item>
+                              <div>
+                                <ion-label *ngIf="ShippingLastName.invalid && ShippingLastName.dirty"
+                                  class="state-error">{{
+                                  error_messages.Shipping_Last_Name.required }}
+                                </ion-label>
+                              </div>
+                            </ion-col>
+                          </ion-row>
+
+
+                          <ion-row style="margin-bottom:10px">
+                            <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                              <ion-label>Company name (optional)</ion-label>
+                              <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                                <ion-input class="ion-no-padding" name="Shipping_Company_Name"
+                                  [(ngModel)]="obsOrder.Shipping_Company_Name" #ShippingCompanyName="ngModel"
+                                  placeholder="Company name (Optional)"></ion-input>
+                              </ion-item>
+                            </ion-col>
+                          </ion-row>
+
+                          <ion-row style="margin-bottom:10px">
+                            <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                              <ion-label>Street address *</ion-label>
+
+                              <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                                <ion-input class="ion-no-padding" name="Shipping_Street_Address1"
+                                  [(ngModel)]="obsOrder.Shipping_Street_Address1" #ShippingStreetAddress1="ngModel"
+                                  required placeholder="House number & street name"></ion-input>
+
+                              </ion-item>
+                              <div>
+                                <ion-label *ngIf="ShippingStreetAddress1.invalid && ShippingStreetAddress1.dirty"
+                                  class="state-error">{{
+                                  error_messages.Shipping_Street_Address1.required }}
+                                </ion-label>
+                              </div>
+                              <ion-item style="margin-top:5px"
+                                class="ion-align-self-center ion-text-left ion-no-padding">
+                                <ion-input class="ion-no-padding" name="Shipping_Street_Address2"
+                                  [(ngModel)]="obsOrder.Shipping_Street_Address2" #ShippingStreetAddress2="ngModel"
+                                  placeholder="Apartment, suite, unit, etc.(Optional)"></ion-input>
+                              </ion-item>
+                            </ion-col>
+                          </ion-row>
+
+                          <ion-row style="margin-bottom:10px">
+                            <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                              <ion-label>Town / City (optional)</ion-label>
+                              <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                                <ion-input class="ion-no-padding" name="Shipping_City"
+                                  [(ngModel)]="obsOrder.Shipping_City" #ShippingCity="ngModel"
+                                  placeholder="Town / City (Optional)"></ion-input>
+                              </ion-item>
+                            </ion-col>
+                          </ion-row>
+
+                          <ion-row style="margin-bottom:10px">
+                            <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                              <ion-label>Postcode / ZIP *</ion-label>
+                              <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                                <ion-input class="ion-no-padding" name="Shipping_Postcode"
+                                  [(ngModel)]="obsOrder.Shipping_Postcode" 
+                                  #ShippingPostcode="ngModel" required minlength="6" maxlength="6"
+                                  placeholder="Postcode / ZIP" (keyup)="onKeyUp()" (paste)="onPaste($event)" (keypress)="onInput($event)" ></ion-input>
+                              </ion-item>
+                              <div>
+                                <ion-label *ngIf="ShippingPostcode.invalid && ShippingPostcode.dirty"
+                                  class="state-error">  
+                                  {{ShippingPostcode.errors?.required ?  error_messages.Shipping_Postcode.required :""}}
+                                  {{ShippingPostcode.errors?.minlength ? error_messages.Shipping_Postcode.min:""}}
+                                  {{ShippingPostcode.errors?.maxlength ? error_messages.Shipping_Postcode.max:""}}
+                                </ion-label>
+                              </div>
+                            </ion-col>
+                          </ion-row>
+
+                          <ion-row style="margin-bottom:10px">
+                            <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                              <ion-label>Country *</ion-label>
+                              <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                                <ion-input class="ion-no-padding" name="Shipping_Country"
+                                  [(ngModel)]="obsOrder.Shipping_Country" #ShippingCountry="ngModel" required
+                                  placeholder="Country*"></ion-input>
+                              </ion-item>
+                              <div>
+                                <ion-label *ngIf="ShippingCountry.invalid && ShippingCountry.dirty" class="state-error">
+                                  {{
+                                  error_messages.Billing_Country.required }}
+                                </ion-label>
+                              </div>
+                            </ion-col>
+                          </ion-row>
+
+
+                          <ion-row style="margin-bottom:10px">
+                            <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                              <ion-label>Phone *</ion-label>
+                              <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                                <ion-input class="ion-no-padding" name="Shipping_Phone"
+                                  [(ngModel)]="obsOrder.Shipping_Phone" #ShippingPhone="ngModel" required
+                                  placeholder="Phone" (paste)="onPaste($event)" (keypress)="onInput($event)"  minlength="8" maxlength="8"></ion-input>
+                              </ion-item>
+                              <div>
+                                <ion-label *ngIf="ShippingPhone.invalid && ShippingPhone.dirty" class="state-error">
+                                  {{ShippingPhone.errors?.required ?  error_messages.Shipping_Phone.required :""}}
+                                  {{ShippingPhone.errors?.minlength ? error_messages.Shipping_Phone.min:""}}
+                                  {{ShippingPhone.errors?.maxlength ? error_messages.Shipping_Phone.max:""}}
+                                </ion-label>
+                              </div>
+                            </ion-col>
+                          </ion-row>
+
+                          <ion-row style="margin-bottom:10px">
+                            <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                              <ion-label>Email address *</ion-label>
+                              <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                                <ion-input class="ion-no-padding" name="Shipping_Email"
+                                  [(ngModel)]="obsOrder.Shipping_Email" #ShippingEmail="ngModel" required
+                                  placeholder="Email address" [email]="true"></ion-input>
+                              </ion-item>
+                              <div>
+                                <ion-label *ngIf="ShippingEmail.invalid && ShippingEmail.dirty" class="state-error">
+                                  {{ShippingEmail.errors?.required ?  error_messages.Shipping_Email.required :""}}
+                                  {{ShippingEmail.errors?.email ? error_messages.Shipping_Email.invalid_email:""}}
+                                </ion-label>
+                              </div>
+                            </ion-col>
+                          </ion-row>
+
+                          <ion-row style="margin-bottom:10px">
+                            <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                              <ion-label>Order notes (optional)</ion-label>
+                              <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                                <ion-textarea rows="6" class="ion-no-padding" name="Shipping_Order_Note"
+                                  [(ngModel)]="obsOrder.Shipping_Order_Note" #ShippingOrderNote="ngModel"
+                                  placeholder="Order notes"></ion-textarea>
+                              </ion-item>
+                            </ion-col>
+                          </ion-row>
+                          <ion-item-divider>
+                          </ion-item-divider>
+                        </ion-col>
+
+
+                      </ion-row>
+
+
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+
+
+                <ion-col size-md="5" size-xs="12" size-lg="5">
+                  <ion-row size="12" style="border: 1px solid rgba(0,0,0,.1)">
+                    <ion-col class="ion-align-self-top">
+                      <ion-row size="12" class="ion-align-self-center ion-text-center"
+                        style="background-color:#fbfbfb;height:47px;font-size:16px;color:#5D6167">
+
+                        <ion-col style="padding-left:20px" class="ion-align-self-center ion-text-left" size="6">
+                          Cart Totals
+                        </ion-col>
+                        <ion-col *ngIf="'Admin;Admin3;'.includes(this.obsUserSession.Member_Type+';')  && this.data.act == 'editorder'"  style="padding-right:20px" class="ion-align-self-center ion-text-right" size="6" >
+                        <a [routerLink]="[]" (click)="editorder()" class="menuitemact"
+                        style="text-decoration: underline;font-size:16px;">Edit Order Detail</a>
+                      </ion-col>
+                   
+
+                      </ion-row>
+
+                    </ion-col>
+                  </ion-row>
+
+
+
+
+
+
+                  <ion-row size="12" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                    <ion-col>
+                      <ion-row size="12" class="ion-align-self-center" style="margin-top:10px;font-size:14px;">
+                        <ion-col offset="1" size="10">
+                          <ion-row style="border-bottom: 1px solid rgba(0,0,0,.1);">
+                            <ion-col class=" ion-text-left" style="color:#021333;font-size:14px;font-weight: bold;"
+                              size-lg="6">
+                              Product
+                            </ion-col>
+                            <ion-col class=" ion-text-right" style="color:#021333;font-size:14px;font-weight: bold;"
+                              size-lg="6">
+                              Subtotal
+                            </ion-col>
+                          </ion-row>
+                        </ion-col>
+                      </ion-row>
+
+                      <ion-grid *ngFor="let orderdetCat of obsOrder.Order_Detail_Categories; let i = index">
+                        <ion-row size="12" class="ion-align-self-center" style="margin-top:10px;font-size:14px;">
+                          <ion-col offset="1" size="10">
+                            <ion-row>
+                              <ion-col class=" ion-text-left" style="color:#5D6167;font-size:14px;font-weight: bold;"
+                                size-lg="6">
+                                {{orderdetCat.Category_Code}}
+                              </ion-col>
+                              <!-- <ion-col class=" ion-text-right" style="color:#021333;font-size:14px;font-weight: bold;" size-lg="6">
+                                Subtotal
+                              </ion-col> -->
+                            </ion-row>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row size="12" class="ion-align-self-center" style="margin-top:10px;font-size:14px;"
+                          *ngFor="let orderdet of obsOrder.Temp_Order_Detail; let i = index">
+                          <ion-col offset="1" size="10">
+                            <ion-row>
+                              <ion-col class=" ion-text-left" style="color:#021333;font-size:14px" size-lg="6">
+                                {{ orderdet.Product_Name}} x {{ orderdet.Qty}}
+                              </ion-col>
+                              <ion-col class=" ion-text-right" style="color:#021333;font-size:14px" size-lg="6">
+                                {{ orderdet.Format_Sub_Total}}
+                              </ion-col>
+                            </ion-row>
+                          </ion-col>
+                        </ion-row>
+
+                        <ion-row size="12" class="ion-align-self-center" style="margin-top:10px;font-size:15px;">
+                          <ion-col offset="1" size="10">
+                            <ion-row style="border-top: 1px solid rgba(0,0,0,.1);">
+                              <ion-col class=" ion-text-left" style="color:#021333;font-size:14px" size-lg="6">
+                                Subtotal
+                              </ion-col>
+                              <ion-col class=" ion-text-right" style="color:#021333;font-size:14px" size-lg="6">
+                                {{orderdetCat.Format_Sub_Total}}
+                              </ion-col>
+                            </ion-row>
+
+                          </ion-col>
+
+
+                        </ion-row>
+                      </ion-grid>
+
+       
+
+                      <ion-row size="12" class="ion-align-self-center" style="margin-top:10px;font-size:15px;">
+                        <ion-col offset="1" size="10">
+                          <ion-row>
+                            <ion-col class=" ion-text-left" style="color:#021333;font-size:15px" size-lg="6">
+                              Total
+                            </ion-col>
+                            <ion-col class=" ion-text-right" style="color:#021333;font-size:15px" size-lg="6">
+                              {{this.obsOrder.Format_Sub_Total}}
+                            </ion-col>
+                          </ion-row>
+                          <ion-item-divider>
+                          </ion-item-divider>
+                        </ion-col>
+
+
+                      </ion-row>
+
+                      <ion-row *ngIf="this.obsDeliveryInfo.Sales_Type!='Walk-In'" size="12" class="ion-align-self-center" style="margin-top:10px;font-size:15px;">
+                        <ion-col offset="1" size="10">
+                          <ion-row>
+                            <ion-col class=" ion-text-left" style="color:#021333;font-size:15px" size-lg="6">
+                              Shipping
+                            </ion-col>
+                            <ion-col class=" ion-text-right" style="color:#021333;font-size:15px" size-lg="6">
+                              <ion-row class="stackfont" size="12" size-lg="12">
+                                <!-- <ion-item> -->
+                                <div (click)="check_delivery()">
+
+                                  <ion-checkbox style="--border-radius:100%" #chkDelivery [checked]="deliveryChecked">
+                                  </ion-checkbox>
+                                </div>
+                                <ion-label style="margin-left:5px">Delivery fee: {{ this.obsOrder.Format_Shipping_Amount }}</ion-label>
+                                <!-- <div>
+                                  <ion-label *ngIf="!obsUser.Is_Checked && obsUser.Is_Checked!=undefined"
+                                  class="state-error">Please agree to the terms & conditions</ion-label>
+                                </div> -->
+                              </ion-row>
+
+                              <ion-row class="stackfont" size="12" size-lg="12" style="margin-top:5px">
+                                <!-- <ion-item> -->
+                                <div (click)="check_self()">
+
+                                  <ion-checkbox style="--border-radius:100%" [checked]="selfChecked" #chkSelfPickup>
+                                  </ion-checkbox>
+                                </div>
+                                <ion-label style="margin-left:5px">Self Pickup</ion-label>
+                                <!-- <div>
+                                  <ion-label *ngIf="!obsUser.Is_Checked && obsUser.Is_Checked!=undefined"
+                                  class="state-error">Please agree to the terms & conditions</ion-label>
+                                </div> -->
+                              </ion-row>
+                            </ion-col>
+                          </ion-row>
+                          <ion-item-divider>
+                          </ion-item-divider>
+                        </ion-col>
+                      </ion-row>
+
+                      <ion-row *ngIf="'Admin;Admin1;Admin2;Admin3;Admin12;Admin123'.includes(this.obsUserSession.Member_Type+';') && (this.obsDeliveryInfo.Sales_Type == 'Wholesales' || this.obsDeliveryInfo.Sales_Type == 'Pre-Order'|| this.obsDeliveryInfo.Sales_Type == 'Walk-In')" size="12" class="ion-align-self-center" style="margin-top:10px;font-size:15px;">
+                        <ion-col offset="1" size="10">
+                          <ion-row>
+                            <ion-col class=" ion-text-left" style="color:#021333;font-size:15px" size-lg="6">
+                              Pay Upon Collection
+                            </ion-col>
+                            <ion-col class=" ion-text-right" style="color:#021333;font-size:15px" size-lg="6">
+                              <ion-row class="stackfont" size="12" size-lg="12">
+                                <!-- <ion-item> -->
+                                <div (click)="check_payment_collection()">
+
+                                  <ion-checkbox style="--border-radius:100%" #idchkPaymentCollectionYes [checked]="chkPaymentCollectionYes">
+                                  </ion-checkbox>
+                                </div>
+                                <ion-label style="margin-left:5px">Yes</ion-label>
+                                <!-- <div>
+                                  <ion-label *ngIf="!obsUser.Is_Checked && obsUser.Is_Checked!=undefined"
+                                  class="state-error">Please agree to the terms & conditions</ion-label>
+                                </div> -->
+                              </ion-row>
+
+                              <ion-row class="stackfont" size="12" size-lg="12" style="margin-top:5px">
+                                <!-- <ion-item> -->
+                                <div (click)="check_payment_collection()">
+
+                                  <ion-checkbox style="--border-radius:100%" [checked]="chkPaymentCollectionNo" #idchkPaymentCollectionNo>
+                                  </ion-checkbox>
+                                </div>
+                                <ion-label style="margin-left:5px">No</ion-label>
+                              </ion-row>
+                            </ion-col>
+                          </ion-row>
+                          <ion-item-divider>
+                          </ion-item-divider>
+                        </ion-col>
+                      </ion-row>
+
+
+
+                      <ion-row *ngIf="'Admin;Admin1;Admin2;Admin3;Admin12;Admin123'.includes(this.obsUserSession.Member_Type+';') && this.obsDeliveryInfo.Sales_Type == 'Walk-In'" size="12" class="ion-align-self-center" style="margin-top:10px;font-size:15px;">
+                        <ion-col offset="1" size="10">
+                          <ion-row>
+                            <ion-col class=" ion-text-left" style="color:#021333;font-size:15px" size-lg="6">
+                              Payment Received
+                            </ion-col>
+                            <ion-col class=" ion-text-right" style="color:#021333;font-size:15px" size-lg="6">
+                              <ion-row class="stackfont" size="12" size-lg="12">
+                                <!-- <ion-item> -->
+                                <div (click)="check_payment()">
+
+                                  <ion-checkbox style="--border-radius:100%" #idchkPaymentReceivedYes [checked]="chkPaymentReceivedYes">
+                                  </ion-checkbox>
+                                </div>
+                                <ion-label style="margin-left:5px">Yes</ion-label>
+                                <!-- <div>
+                                  <ion-label *ngIf="!obsUser.Is_Checked && obsUser.Is_Checked!=undefined"
+                                  class="state-error">Please agree to the terms & conditions</ion-label>
+                                </div> -->
+                              </ion-row>
+
+                              <ion-row class="stackfont" size="12" size-lg="12" style="margin-top:5px">
+                                <!-- <ion-item> -->
+                                <div (click)="check_payment()">
+
+                                  <ion-checkbox style="--border-radius:100%" [checked]="chkPaymentReceivedNo" #idchkPaymentReceivedNo>
+                                  </ion-checkbox>
+                                </div>
+                                <ion-label style="margin-left:5px">No</ion-label>
+                              </ion-row>
+                            </ion-col>
+                          </ion-row>
+                          <ion-item-divider>
+                          </ion-item-divider>
+                        </ion-col>
+                      </ion-row>
+
+                      <ion-row *ngIf="'Admin;Admin1;Admin2;Admin3;Admin12;Admin123'.includes(this.obsUserSession.Member_Type+';') " size="12" class="ion-align-self-center" style="margin-top:10px;font-size:15px;">
+                        <ion-col offset="1" size="10">
+                          <ion-row>
+                            <ion-col class=" ion-text-left" style="color:#021333;font-size:15px" size-lg="6">
+                              Extra Plastic Bag
+                            </ion-col>
+                            <ion-col class=" ion-text-right" style="color:#021333;font-size:15px" size-lg="6">
+                              <ion-row class="stackfont" size="12" size-lg="12">
+                                <!-- <ion-item> -->
+                                <div (click)="check_Plastic()">
+
+                                  <ion-checkbox style="--border-radius:100%" #idchkExtraPlasticYes [checked]="chkExtraPlasticYes">
+                                  </ion-checkbox>
+                                </div>
+                                <ion-label style="margin-left:5px">Yes</ion-label>
+                                <!-- <div>
+                                  <ion-label *ngIf="!obsUser.Is_Checked && obsUser.Is_Checked!=undefined"
+                                  class="state-error">Please agree to the terms & conditions</ion-label>
+                                </div> -->
+                              </ion-row>
+
+                              <ion-row class="stackfont" size="12" size-lg="12" style="margin-top:5px">
+                                <!-- <ion-item> -->
+                                <div (click)="check_Plastic()">
+
+                                  <ion-checkbox style="--border-radius:100%" #idchkExtraPlasticNo [checked]="chkExtraPlasticNo">
+                                  </ion-checkbox>
+                                </div>
+                                <ion-label style="margin-left:5px">No</ion-label>
+                              </ion-row>
+                            </ion-col>
+                          </ion-row>
+                          <ion-item-divider>
+                          </ion-item-divider>
+                        </ion-col>
+                      </ion-row>
+
+                      <ion-row size="12" class="ion-align-self-center" style="margin-top:10px;font-size:15px;">
+                        <ion-col offset="1" size="10">
+                          <ion-row>
+                            <ion-col class=" ion-text-left" style="color:#021333;font-size:15px" size-lg="6">
+                              Grand Total
+                            </ion-col>
+                            <ion-col class=" ion-text-right" style="color:#021333;font-size:15px" size-lg="6">
+                              {{this.obsOrder.Format_Total}}
+                            </ion-col>
+                          </ion-row>
+                        </ion-col>
+                        <ion-item-divider>
+                        </ion-item-divider>
+
+                      </ion-row>
+                      <ion-row size="12" class="ion-align-self-center" style="margin-top:10px;font-size:14px;">
+                        <ion-col offset="1" size="10" style="height:140px">
+                          <ion-label style="margin-left:5px">Direct bank transfer</ion-label>
+                          <div class="arrow_box" style="padding-top:10px;padding-left:10px;padding-right:10px">
+                            <p class="graph" style="font-size:13px;line-height: 25px;font-weight: 400;color: #6a6a6a;">
+                              Make your payment directly into our bank account. Your order will not be shipped until the funds have cleared in our account.
+                            </p>
+                          </div>
+                        </ion-col>
+
+
+                      </ion-row>
+                      <ion-row size="12" class="ion-align-self-center" style="margin-top:50px;font-size:14px;">
+                        <ion-col offset="1" size="10">
+                          <ion-row *ngIf="this.data?.act != 'editorder'">
+                            <ion-button style=" width:98%;height:39px;float: right;font-size:13px;" color="vibrant"
+                              expand="round" (click)="tapCheckout()">
+                              <!-- <fa-icon icon="cart-plus" style="font-size: 13px; margin-right:5px"></fa-icon> -->
+
+                              PROCEED TO PAYMENT
+                            </ion-button>
+                          </ion-row>
+
+                          <ion-row *ngIf="'Admin;Admin3;'.includes(this.obsUserSession.Member_Type+';') && this.data.act == 'editorder'">
+                            <ion-button style=" width:98%;height:39px;float: right;font-size:13px;" color="vibrant"
+                              expand="round" (click)="tapSaveChanges()">
+                              <!-- <fa-icon icon="cart-plus" style="font-size: 13px; margin-right:5px"></fa-icon> -->
+
+                              SAVE CHANGES
+                            </ion-button>
+                          </ion-row>
+                        </ion-col>
+                        <!-- <ion-item-divider>
+                    </ion-item-divider> -->
+
+                      </ion-row>
+
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+
+        </ion-grid>
+
+      </ion-grid>
+    </perfect-scrollbar>
+  </form>
+</ion-content>

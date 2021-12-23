@@ -1,0 +1,351 @@
+<ion-content [fullscreen]="true">
+  <input accept="image/*" type="file" style="display:none" (change)="edit(hiddenfileinputsingle.files)"
+    #hiddenfileinputsingle single>
+
+  <perfect-scrollbar style="height: 100%;width:100%;">
+    <form name="form" #f="ngForm" class="formGroup">
+      <ion-grid>
+        <ion-row style="width: 100%;" size="12">
+          <ion-col size-md="10" size-xs="12" size-lg="10" offset-lg="1" offset-md="1" offset-xs="0">
+            <ion-row style="width: 100%;" size="12">
+              <ion-col size-md="3" size-xs="12" size-lg="3">
+
+                <ion-row size="12" style="font-family: 'Poppins', sans-serif;color:#5D6167">
+                  <ion-col style="padding-left:10px;padding-right:50px;">
+                    <ion-row size="12" class="ion-align-self-center" style="margin-top:10px;font-size:16px;">
+                      <ion-col size="12">
+                        <ion-row style="margin-bottom:10px">
+                          <div class="block block-collapsible-nav account-nav">
+                            <div class="block-title block-collapsible-nav account-nav-title">
+                              <h3>My Account</h3>
+                            </div>
+                            <div class="content block-collapsible-nav account-nav-content"
+                              id="block-collapsible-nav account-nav">
+                              <ul style="padding-inline-start: 15px;">
+                                <div *ngFor="let menu of obsMenu;  let s=index">
+                                  <li class="nav item"><a href="{{menu.url}}"
+                                      [ngStyle]="{'font-weight':menu.bold ? 'bold' : 'normal' }">{{menu.title}}</a></li>
+                                </div>
+                              </ul>
+                            </div>
+                          </div>
+                        </ion-row>
+                      </ion-col>
+                    </ion-row>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+
+              <ion-col size-md="9" size-xs="12" size-lg="9">
+                <ion-row size="12">
+                  <ion-col style="padding-left:10px;padding-right:50px;">
+                    <ion-row size="12" class="ion-align-self-center ion-text-center"
+                      style="border-bottom: 1px solid rgba(0,0,0,.1);background-color:#fbfbfb;height:47px;font-size:18px;color:#5D6167">
+                      <ion-col class="ion-align-self-center ion-text-left" size-lg="4" size-md="4">
+                        Product
+                      </ion-col>
+                    </ion-row>
+                  </ion-col>
+                </ion-row>
+
+                <ion-row size="12" style="font-family: 'Poppins', sans-serif;color:#5D6167">
+                  <ion-col style="padding-left:10px;padding-right:50px;">
+                    <ion-row size="12" class="ion-align-self-center" style="margin-top:10px;font-size:16px;">
+                      <ion-col size="12">
+                        <ion-row style="margin-bottom:10px">
+                          <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                            <ion-label>Product Name *</ion-label>
+                            <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                              <ion-input class="ion-no-padding" name="Product_Name"
+                                [(ngModel)]="obsProduct.Product_Name" #productName="ngModel" required
+                                placeholder="Enter Your Product Name"></ion-input>
+                            </ion-item>
+                            <div>
+                              <ion-label *ngIf="productName.invalid && productName.dirty" class="state-error">{{
+                                error_messages.Product_Name.required }}
+                              </ion-label>
+                            </div>
+                          </ion-col>
+                        </ion-row>
+
+                        <ion-row style="margin-bottom:10px">
+                          <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                            <ion-label>Remark</ion-label>
+                            <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                              <ion-input class="ion-no-padding" name="Product_Name2"
+                                [(ngModel)]="obsProduct.Product_Name2" #productName2="ngModel"
+                                placeholder="Enter Your Remark"></ion-input>
+                            </ion-item>
+                          </ion-col>
+                        </ion-row>
+
+                        <ion-row style="margin-bottom:10px">
+                          <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                            <ion-label>Normal Price *</ion-label>
+                            <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                              <ion-input class="ion-no-padding" name="Price" [(ngModel)]="obsProduct.Price"
+                                #price="ngModel" required placeholder="Enter Your Normal Price"></ion-input>
+                            </ion-item>
+                            <div>
+                              <ion-label *ngIf="price.invalid && price.dirty" class="state-error">{{
+                                error_messages.Price.required }}
+                              </ion-label>
+                            </div>
+                          </ion-col>
+                        </ion-row>
+
+                        <ion-row style="margin-bottom:10px">
+                          <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                            <ion-label>Wholesales Price *</ion-label>
+                            <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                              <ion-input class="ion-no-padding" name="Price" [(ngModel)]="obsProduct.Wholesales_Price"
+                                #Wholesales_Price="ngModel" required placeholder="Enter Your Wholesales Price">
+                              </ion-input>
+                            </ion-item>
+                            <div>
+                              <ion-label *ngIf="price.invalid && price.dirty" class="state-error">{{
+                                error_messages.Wholesales_Price.required }}
+                              </ion-label>
+                            </div>
+                          </ion-col>
+                        </ion-row>
+
+
+                        <ion-row style="margin-bottom:10px">
+                          <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                            <ion-label>Min Qty *</ion-label>
+                            <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                              <ion-input class="ion-no-padding" name="MinQty" [(ngModel)]="obsProduct.Min_Qty"
+                                #MinQty="ngModel" required placeholder="Enter Your Min Qty"></ion-input>
+                            </ion-item>
+                            <div>
+                              <ion-label *ngIf="MinQty.invalid && MinQty.dirty" class="state-error">{{
+                                error_messages.Min_Qty.required }}
+                              </ion-label>
+                            </div>
+                          </ion-col>
+                        </ion-row>
+                   
+                        <ion-row style="margin-bottom:10px">
+                          <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                            <ion-label>Daily Qty *</ion-label>
+                            <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                              <ion-input class="ion-no-padding" name="DailyQty" [(ngModel)]="obsProduct.Daily_Qty"
+                                #DailyQty="ngModel" required placeholder="Enter Your Daily Qty"></ion-input>
+                            </ion-item>
+                            <div>
+                              <ion-label *ngIf="DailyQty.invalid && DailyQty.dirty" class="state-error">{{
+                                error_messages.Daily_Qty.required }}
+                              </ion-label>
+                            </div>
+                          </ion-col>
+                        </ion-row>
+
+                        <ion-row style="margin-bottom:10px">
+                          <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                            <ion-label>Seq *</ion-label>
+                            <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                              <ion-input class="ion-no-padding" name="Seq" [(ngModel)]="obsProduct.Seq"
+                                #Seq="ngModel" required placeholder="Enter Your Seq"  type="number"  min="0" max="999" (keypress)="onInput($event)" 
+                                (focusout)="onKeyUp(obsProduct.Seq)"></ion-input>
+                            </ion-item>
+                            <div>
+                              <ion-label *ngIf="Seq.invalid && Seq.dirty" class="state-error">{{
+                                error_messages.Seq.required }}
+                              </ion-label>
+                            </div>
+                          </ion-col>
+                        </ion-row>
+
+                        <ion-row style="margin-bottom:10px">
+                          <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                            <ion-label>Category *</ion-label>
+                            <ion-item class="ion-align-self-center ion-text-left ion-no-padding" lines="none">
+                              <ion-select [(ngModel)]="obsProduct.Category_Code" value="{{obsProduct.Category_Code}}"
+                                name="Category_Code"
+                                style="max-width: 100% !important;font-weight: 500;" interface="popover"
+                                class=" ion-no-padding" placeholder="Select a Category " #Category_Code="ngModel">
+                                <ion-select-option *ngFor="let item of obsCategorys" value="{{item.Code}}">{{item.Name}}
+                                </ion-select-option>
+                              </ion-select>
+                            </ion-item>
+                            <div>
+                              <ion-label *ngIf="Category_Code.invalid && Category_Code.dirty" class="state-error">
+                                {{
+                                error_messages.Category_Code.required }}
+                              </ion-label>
+                            </div>
+                          </ion-col>
+                        </ion-row>
+
+                        <ion-row style="margin-bottom:10px">
+                          <ion-col class="ion-text-left stacklabel" size-lg="12">
+                            <ion-label style="font-size:14px">Product Image *</ion-label>
+                            <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                              <ion-button style="width:350px;height:39px;float: right;font-size:13px;" color="vibrant"
+                                expand="round" (click)="tapupload()">
+                                Upload Product Image
+                              </ion-button>
+                            </ion-item>
+                          </ion-col>
+                        </ion-row>
+                        <ion-row style="margin-bottom:10px">
+                          <ion-col class="ion-text-left stacklabel" size-lg="12">
+                            <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                              <img [src]="obsProduct.Image_Path" style="width:300px;height:300px;padding:10px "
+                                [hidden]="obsProduct.Image_Path==null">
+                            </ion-item>
+                          </ion-col>
+                        </ion-row>
+
+                        <ion-row style="margin-bottom:10px">
+                          <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                            <ion-label>Start Date</ion-label>
+
+                            <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                              <ion-input class="ion-no-padding" name="Start_List_Date"
+                                [(ngModel)]="obsProduct.Start_List_Date" #Start_List_Date="ngModel"
+                                placeholder="Enter Your Start Date" [owlDateTimeTrigger]="dtStart"  ></ion-input>
+                            </ion-item>
+                            <input [(ngModel)]="selectedMomentStart" name="dtStart_List_Date" [owlDateTime]="dtStart"
+                              style="width:0px !important ;height:0px !important;
+                            margin:0px!important;padding:0px !important;border:0px">
+                            <owl-date-time #dtStart [pickerType]="'calendar'" (afterPickerClosed)="onChange1(dtStart)">
+                            </owl-date-time>
+        
+                          </ion-col>
+                        </ion-row>
+
+                        <ion-row style="margin-bottom:10px">
+                          <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                            <ion-label>End Date</ion-label>
+
+                            <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                              <ion-input class="ion-no-padding" name="End_List_Date"
+                                [(ngModel)]="obsProduct.End_List_Date" #End_List_Date="ngModel"
+                                placeholder="Enter Your End Date" [owlDateTimeTrigger]="dtEnd" ></ion-input>
+
+                            </ion-item>
+                            <input [(ngModel)]="selectedMomentEnd" name="dtEnd_List_Date" [owlDateTime]="dtEnd"
+                              style="width:0px !important ;height:0px !important;
+                            margin:0px!important;padding:0px !important;border:0px">
+                            <owl-date-time #dtEnd [pickerType]="'calendar'" (afterPickerClosed)="onChange2(dtEnd)">
+                            </owl-date-time>
+
+                          </ion-col>
+                        </ion-row>
+
+                
+                        <ion-row style="margin-bottom:10px">
+                          <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                            <ion-label>Internal Name (Report) *</ion-label>
+                            <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                              <ion-input class="ion-no-padding" name="Internal_Name"
+                                [(ngModel)]="obsProduct.Internal_Name" #Internal_Name="ngModel" required
+                                placeholder="Enter Your Internal Name"></ion-input>
+                            </ion-item>
+                            <div>
+                              <ion-label *ngIf="Internal_Name.invalid && Internal_Name.dirty" class="state-error">{{
+                                error_messages.Internal_Name.required }}
+                              </ion-label>
+                            </div>
+                          </ion-col>
+                        </ion-row>
+
+                        <ion-row style="margin-bottom:10px">
+                          <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                            <!-- <ion-label>Internal Name (Report) *</ion-label> -->
+                            <ion-item style="border-style:none">
+                              <ion-checkbox [(ngModel)]="obsProduct.Disabled_Product" name="Disabled_Product"></ion-checkbox>
+                              <ion-label>Disabled</ion-label>
+                            </ion-item>
+                          </ion-col>
+                        </ion-row>
+
+                        <ion-row style="margin-bottom:10px">
+                          <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                            <ion-label>Disabled Message *</ion-label>
+                            <ion-item class="ion-align-self-center ion-text-left ion-no-padding">
+                              <ion-input class="ion-no-padding" name="Disabled_Message"
+                                [(ngModel)]="obsProduct.Disabled_Message" #Disabled_Message="ngModel" required
+                                placeholder="Enter Your Disabled Message"></ion-input>
+                            </ion-item>
+                            <div>
+                              <ion-label *ngIf="Disabled_Message.invalid && Disabled_Message.dirty" class="state-error">{{
+                                error_messages.Disabled_Message.required }}
+                              </ion-label>
+                            </div>
+                          </ion-col>
+                        </ion-row>
+
+                        <ion-row style="margin-bottom:10px">
+                          <ion-col class="stackfont ion-text-left stacklabel" size-lg="12">
+                            <ion-label>Working Days *</ion-label>
+                            <ion-item class="ion-align-self-center ion-text-left ion-no-padding"
+                              style="border-style:none">
+
+                              <ion-list>
+                                <ion-item style="border-style:none">
+                                  <ion-checkbox [(ngModel)]="obsProduct.Is_Mon" name="Is_Mon"></ion-checkbox>
+                                  <ion-label>Monday</ion-label>
+                                </ion-item>
+                              </ion-list>
+
+                              <ion-list>
+                                <ion-item style="border-style:none">
+                                  <ion-checkbox [(ngModel)]="obsProduct.Is_Tue" name="Is_Tue"></ion-checkbox>
+                                  <ion-label>Tuesday</ion-label>
+                                </ion-item>
+                              </ion-list>
+
+                              <ion-list>
+                                <ion-item style="border-style:none">
+                                  <ion-checkbox [(ngModel)]="obsProduct.Is_Wed" name="Is_Wed"></ion-checkbox>
+                                  <ion-label>Wednesday</ion-label>
+                                </ion-item>
+                              </ion-list>
+
+                              <ion-list>
+                                <ion-item style="border-style:none">
+                                  <ion-checkbox [(ngModel)]="obsProduct.Is_Thu" name="Is_Thu"></ion-checkbox>
+                                  <ion-label>Thursday</ion-label>
+                                </ion-item>
+                              </ion-list>
+
+                              <ion-list>
+                                <ion-item style="border-style:none">
+                                  <ion-checkbox [(ngModel)]="obsProduct.Is_Fri" name="Is_Fri"></ion-checkbox>
+                                  <ion-label>Friday</ion-label>
+                                </ion-item>
+                              </ion-list>
+
+                              <ion-list>
+                                <ion-item style="border-style:none">
+                                  <ion-checkbox [(ngModel)]="obsProduct.Is_Sat" name="Is_Sat"></ion-checkbox>
+                                  <ion-label>Saturday</ion-label>
+                                </ion-item>
+                              </ion-list>
+                            </ion-item>
+                          </ion-col>
+                        </ion-row>
+
+                        <ion-row size="12" style="float: right;">
+
+                          <ion-button style=" width:144px;height:29px;float: right;font-size:13px;margin-right:10px"
+                            color="vibrant" expand="block" (click)="onSubmit()">
+                            {{ this.isedit ? "SAVE CHANGES":"ADD PRODUCT"}}
+                          </ion-button>
+                        </ion-row>
+                      </ion-col>
+                    </ion-row>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </form>
+  </perfect-scrollbar>
+  <!-- </perfect-scrollbar> -->
+</ion-content>

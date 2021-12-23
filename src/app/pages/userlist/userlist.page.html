@@ -1,0 +1,170 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <!-- <ion-buttons slot="secondary">
+      <ion-button (click)="onSubmit()">
+        <ion-icon slot="icon-only" name="save-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons> -->
+    <ion-grid style="height:100%;width:100%;">
+      <ion-row>
+        <ion-col size="12">
+          <div class="main-box">
+          <div class="imageprofile left-side " style="height:30px;width:30px;"><img
+            [src]="showImage(this.obsUserSession?.Profile_Image_Path)" alt=""
+            class="circle-wrapper"> </div>
+            <ion-title  class="right-side ">{{this.obsUserSession?.User_Name}}</ion-title>
+          </div>
+        </ion-col>
+        <!-- <ion-col  size="8">
+          <ion-title>productvidew</ion-title>
+        </ion-col> -->
+      </ion-row>
+    </ion-grid>
+   
+  </ion-toolbar>
+  
+</ion-header>
+
+<!-- 
+<ion-header>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+
+    <ion-title>My Listings</ion-title>
+  </ion-toolbar>
+</ion-header> -->
+
+
+
+
+<ion-content #content [fullscreen]="true">
+  <ion-refresher slot="fixed" (ionRefresh)="loadData($event,true)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+  <ion-grid>
+
+
+    <!-- <ion-row>
+      <ion-col size-lg="12" size-md="12" size-xs="12">
+        <ion-item-divider class="ion-no-padding">
+          <ion-grid>
+
+            <ion-row style="align-items: center;">
+              <ion-col size="2" size-md="2" size-xs="4">
+                <div class="imageprofile"><img
+                    [src]="showImage(this.obsUserSession?.Profile_Image_Path)" alt=""
+                    class="circle-wrapper"></div>
+              </ion-col>
+              <ion-col size="10" size-md="10" size-xs="8">
+                <ion-row>
+
+                  <ion-col>
+                    <h3 class="h5" style="margin:0px !important;  ">{{this.obsUserSession?.User_Name}}</h3>
+                
+                  </ion-col>
+                </ion-row>
+                <ion-row>
+
+                  <ion-col>
+                   
+                    <ion-label>Join since 28 Jan 1990</ion-label>
+                  </ion-col>
+                </ion-row>
+              </ion-col>
+            </ion-row>
+
+          </ion-grid>
+
+
+
+
+       
+
+        </ion-item-divider>
+
+
+      </ion-col>
+    </ion-row> -->
+    <ion-row>
+      <ion-col size-lg="12" size-md="12" size-xs="12">
+        <ion-row>
+          <ion-card style="width:100%">
+            <ion-card-header>
+              <ion-card-title>My Listings</ion-card-title>
+            </ion-card-header>
+
+            <ion-card-content *ngIf="!BoolUserList">
+
+              <ion-grid class="row products products-big">
+
+                <ion-row>
+                  <ion-col style="height:100px">
+                    No results found
+                  </ion-col>
+
+                </ion-row>
+              </ion-grid>
+            </ion-card-content>
+            <ion-card-content *ngIf="BoolUserList">
+
+              <ion-grid class="row products products-big">
+
+                <ion-row>
+                  <ion-col size-lg="3" size-md="6" size-xs="6" *ngFor="let obj of obsProduct">
+                    <div class="col-lg-4 col-md-6" style="cursor: pointer;" (click)="tapEdit(obj)">
+                      <div class="product">
+                        <div class="main-box" style="white-space: pre-line;align-items: center;vertical-align: middle;">
+                          <div class="imageprofile left-side " style="height:20px;width:20px;"><img
+                            [src]="showImage(obj?.Creator_Profile_Image_Path)" alt=""
+                            class="circle-wrapper"> </div>
+                            <div>
+                            <h3 class="h8"  style="margin-left:5px;color:#382c14" >{{obj.Creator_Name}}</h3>
+                            <p class="h9"  style="margin-left:5px;color:#382c14" >{{obj.Last_Created_Ago}}</p>
+                            </div>
+                          </div>
+        
+                      
+                        <div  class="swiper-slide" style="height:150px;width:100%;margin-bottom:15px;margin-top:10px" [ngStyle]="{'background-image': 'url(' + obj.Image_Path + ')'}">
+                          <button class="btn" *ngIf="obj.Is_Reserved>0" >REVERSED</button>
+                        </div>
+                        <div class="text">
+                          <h3 class="h6">{{obj.Product_Name}}</h3>
+                          <p class="h9" style="color:#382c14">{{obj.Location_Name}}</p>
+                        </div>
+                      </div>
+                    </div>
+                  </ion-col>
+
+                </ion-row>
+              </ion-grid>
+            </ion-card-content>
+          </ion-card>
+
+        </ion-row>
+      </ion-col>
+
+    </ion-row>
+  </ion-grid>
+
+
+
+
+
+
+
+
+  <ion-infinite-scroll threshold="100px" (ionInfinite)="loadData($event)">
+    <ion-infinite-scroll-content loadingSpinner="bubbles" loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+
+</ion-content>
+<!-- <ion-footer>
+  <ion-label class="footer"> Powered by Jomcar Solution v1.9</ion-label>
+</ion-footer> -->

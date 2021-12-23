@@ -1,0 +1,166 @@
+<ion-content [fullscreen]="true" *ngIf="isLoaded===true">
+  <!-- <perfect-scrollbar style="height: 100%;width:100%;"> -->
+  <form name="form" #f="ngForm" class="formGroup">
+    <perfect-scrollbar style="height: 100%;width:100%;">
+      <!-- <div class="heading ion-text-center" style="width:100%;">
+        <h3 style="color: #555 !important;" class="ion-text-center">
+          <a style="cursor: pointer;" (click)="back()">
+            <em class="h5">
+              Dashboard
+            </em>
+          </a><em class="h5">&nbsp;/ My Orders</em>
+        </h3>
+      </div> -->
+      <ion-grid>
+        <ion-row style="width: 100%;" size="12">
+          <ion-col size-md="10" size-xs="12" size-lg="10" offset-lg="1" offset-md="1" offset-xs="0">
+            <ion-row style="width: 100%;" size="12">
+              <ion-col size-md="3" size-xs="12" size-lg="3">
+
+                <ion-row size="12" style="font-family: 'Poppins', sans-serif;color:#5D6167">
+                  <ion-col style="padding-left:10px;padding-right:50px;">
+                    <ion-row size="12" class="ion-align-self-center" style="margin-top:10px;font-size:16px;">
+                      <ion-col size="12">
+                        <ion-row style="margin-bottom:10px">
+                          <div class="block block-collapsible-nav account-nav">
+                            <div class="block-title block-collapsible-nav account-nav-title">
+                              <h3>My Account</h3>
+                            </div>
+                            <div class="content block-collapsible-nav account-nav-content"
+                              id="block-collapsible-nav account-nav">
+                              <ul  style="padding-inline-start: 15px;" >
+                                <div  *ngFor="let menu of obsMenu;  let s=index">
+                                  <li class="nav item"><a href="{{menu.url}}"  [ngStyle]="{'font-weight':menu.bold ? 'bold' : 'normal' }" >{{menu.title}}</a></li>
+                                </div>
+                              </ul>
+                            </div>
+                          </div>
+                        </ion-row>
+                      </ion-col>
+
+
+                    </ion-row>
+
+
+
+                  </ion-col>
+                </ion-row>
+
+
+
+
+              </ion-col>
+
+              <ion-col size-md="9" size-xs="12" size-lg="9">
+                <ion-row size="12">
+                  <ion-col style="padding-left:10px;">
+                    <ion-row size="12" class="ion-align-self-center ion-text-center"
+                      style="border-bottom: 1px solid rgba(0,0,0,.1);background-color:#fbfbfb;height:47px;font-size:18px;color:#5D6167">
+
+                      <ion-col class="ion-align-self-center ion-text-left" size-lg="4" size-md="4">
+                        Order Lists
+                      </ion-col>
+
+                    </ion-row>
+
+                  </ion-col>
+                </ion-row>
+                <ion-row size="12" style="font-family: 'Poppins', sans-serif;color:#5D6167">
+                  <ion-grid>
+                    <ion-row style="width: 100%;" size="12">
+                      <ion-col>
+
+                        <ion-row size="12" style="border: 1px solid rgba(0,0,0,.1)">
+                          <ion-col>
+                            <ion-row size="12" class="ion-align-self-center ion-text-center"
+                              style="background-color:#fbfbfb;height:47px;font-size:15px;color:#5D6167">
+                              <ion-col size-lg="2" size-md="2" class="ion-align-self-center ion-text-left">
+                                Order
+                              </ion-col>
+                              <ion-col size-lg="3" size-md="3" class="ion-align-self-center ion-text-left">
+                                Date
+                              </ion-col>
+                              <ion-col size-lg="3" size-md="3" class="ion-align-self-center ion-text-center">
+                                Order Status
+                              </ion-col>
+                              <ion-col size-lg="2" size-md="2" class="ion-align-self-center ion-text-center">
+                                Total
+                              </ion-col>
+                              <ion-col size-lg="2" size-md="2" class="ion-align-self-center ion-text-center">
+                                Action
+                              </ion-col>
+                            </ion-row>
+                          </ion-col>
+                        </ion-row>
+
+                        <ion-row size="12" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                          <ion-col>
+                            <ion-row size="12" class="ion-align-self-center ion-text-center"
+                              style="margin-top:10px;font-size:15px;"
+                              *ngFor="let itemDet of obsOrderList; let i = index">
+                              <ion-col size-lg="2" size-md="2" size-xs="12"
+                              style="color:#021333;font-size:15px" class="ion-align-self-center ion-text-left" >
+                                {{itemDet.Order_No}}
+                              </ion-col>
+                             
+                              <ion-col size-lg="3" size-md="3" size-xs="12" style="color:#5D6167;font-size:15px"
+                                class="ion-align-self-center ion-text-center" >
+                                {{itemDet.Order_Date}}
+                              </ion-col>
+
+                              <ion-col size-lg="3" size-md="3" size-xs="12" style="color:#5D6167;font-size:15px"
+                              class="ion-align-self-center ion-text-center" >
+                              {{itemDet.Order_Status}}
+                              </ion-col>
+              
+                              <ion-col size-lg="2" size-md="2" size-xs="12" style="color:#5D6167;font-size:15px"
+                              class="ion-align-self-center ion-text-center" >
+                              {{itemDet.Format_Total}}
+                              </ion-col>
+                              
+                              <ion-col size-lg="2" size-md="2" size-xs="12" style="color:#5D6167;font-size:15px"
+                              class="ion-align-self-center ion-text-center" >
+                              <ion-button style=" width:100px;height:29px;float: right;font-size:13px;margin-right:10px" color="vibrant"
+                              expand="block" (click)="orderview(itemDet.Order_ID)">
+                              <!-- <fa-icon icon="cart-plus" style="font-size: 13px; margin-right:5px"></fa-icon> -->
+              
+                              View
+                            </ion-button>
+                               </ion-col>
+                              
+                            </ion-row>
+                          </ion-col>
+                          <ion-col *ngIf="obsOrderList === undefined"  size="12">
+                            <ion-row size="12" class="ion-align-self-center ion-text-center"
+                              style="margin-top:10px;margin-bottom:10px;font-size:15px;">
+                              <ion-col style="color:#5D6167;font-size:15px" class="ion-align-self-center ion-text-center"
+                                size="12">
+                                No record found. 
+                              </ion-col>
+                              </ion-row>
+                          </ion-col>
+                          
+                        </ion-row>
+
+
+                      </ion-col>
+                    </ion-row>
+
+
+
+                  </ion-grid>
+                </ion-row>
+
+
+
+
+              </ion-col>
+
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </perfect-scrollbar>
+  </form>
+  <!-- </perfect-scrollbar> -->
+</ion-content>

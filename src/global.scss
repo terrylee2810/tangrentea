@@ -1,0 +1,493 @@
+/*
+ * App Global CSS
+ * ----------------------------------------------------------------------------
+ * Put style rules here that you want to apply globally. These styles are for
+ * the entire app and not just one component. Additionally, this file can be
+ * used as an entry point to import other CSS/Sass files to be included in the
+ * output CSS.
+ * For more information on global stylesheets, visit the documentation:
+ * https://ionicframework.com/docs/layout/global-stylesheets
+ */
+
+/* Core CSS required for Ionic components to work properly */
+@import "~ng-pick-datetime/assets/style/picker.min.css";
+
+@import "~@ionic/angular/css/core.css";
+
+/* Basic CSS for apps built with Ionic */
+@import "~@ionic/angular/css/normalize.css";
+@import "~@ionic/angular/css/structure.css";
+@import "~@ionic/angular/css/typography.css";
+@import "~@ionic/angular/css/display.css";
+
+/* Optional CSS utils that can be commented out */
+@import "~@ionic/angular/css/padding.css";
+@import "~@ionic/angular/css/float-elements.css";
+@import "~@ionic/angular/css/text-alignment.css";
+@import "~@ionic/angular/css/text-transformation.css";
+@import "~@ionic/angular/css/flex-utils.css";
+
+@import "../node_modules/ag-grid-community/dist/styles/ag-grid.css";
+@import "../node_modules/ag-grid-community/dist/styles/ag-theme-alpine.css";
+
+// .app-sidebar-content {
+//   overflow: hidden;
+//   flex-grow: 1;
+//   display: flex;
+//   width: 100%;
+
+//   .app-sidebar-scroll {
+//     width: 100%;
+//     height: 100%;
+//     overflow: hidden;
+//   }
+// }
+
+// .swal-button{
+//   background-color: #510008 !important;
+//   color:#fff;
+//   border: none;
+//   box-shadow: none;
+//   border-radius: 5px;
+//   font-weight: 600;
+//   font-size: 14px;
+//   padding: 10px 24px;
+//   margin: 0;
+//   cursor:pointerl
+// }
+
+// .swal-footer{
+//   text-align:center !important;
+// }
+
+// .swal-text{
+//   text-align:center !important;
+// }
+
+.imageprofile1 {
+  width: 60px;
+  height: 60px;
+  border-radius: 5;
+} 
+
+.imageprofile {
+  width: 100px;
+  height: 100px;
+  border-radius: 5;
+} 
+
+.circle-wrapper{
+  /* background-color: #666666; */
+  width: 80px;
+  height: 80px;
+  border-radius: 100% !important;
+  width: 100%;
+  height: 100%;
+}
+
+ion-button{
+  text-transform: none;
+}
+
+.footer{
+font-size: 9px;
+color: grey;
+margin :5px;
+}
+
+.card-header {
+  padding: 0.75rem 1.25rem;
+  margin-bottom: 0;
+  color: inherit;
+  background-color: rgba(0, 0, 0, 0.03);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.125);
+}
+
+
+.stack {
+  background-color: red;
+}
+
+
+
+
+
+
+.state-error{
+font-size: 8px !important;
+color:red;
+margin-left:5px;
+--padding-top: 0;
+--padding-bottom: 0;
+}
+
+.state-display{
+  font-size: 9px !important;
+  color:grey;
+  margin-left:5px;
+  --padding-top: 0;
+  --padding-bottom: 0;
+  }
+
+  .state-display-9{
+    font-size: 10px !important;
+    color:		#505050;
+    margin-left:5px;
+    --padding-top: 0;
+    --padding-bottom: 0;
+    }
+  
+
+.formGroup{
+
+  ion-col{
+    & .invalid {
+    
+      --border-color: red !important;
+      background-color: pink;
+      --border-width: 2px;
+      --min-height: 30px !important;
+      --max-height: 30px !important;  
+      height: 34.5px !important;  
+    }
+    & .textarea-invalid {
+      --border-color: red !important;
+      background-color: pink;
+      --border-width: 2px;
+      // // --min-height: 30px !important;
+      // // --max-height: 30px !important;  
+      // height: 34.5px !important;  
+    }
+   
+  }
+
+}
+
+
+// ion-item{
+//   // background: whitesmoke;
+//   // --border-color: green!important;
+//   //     --highlight-height: 30;
+//   //     border: 1px solid red;
+
+//     //   &.item-has-focus {
+//     //     --border-color: black !important;
+//     //     --border-width: 2px;
+//     // }
+//   // background: orange;
+//   // --border-color: yellow;
+//   // --border-width: 2px;
+//   //  & .invalid {
+//   //   background: orange;
+//   //   ion-item{
+//   //     --border-color: black;
+//   //   --border-width: 2px;}}
+
+//     & .invalid {
+//       background: orange;
+//       --border-color: green!important;
+//           --highlight-height: 30;
+//           border: 1px solid red;
+//     }
+   
+// }
+
+// .my-custom-modal-css .modal-wrapper {
+//   height: 20%;
+//   // top:10%;
+//   // left:10%;
+//   // right:10%;
+//   position: absolute; 
+//   display: block;  
+//   padding: 20% 10%  !important;
+// }
+
+.main-box {
+  display: flex;
+  flex-direction: row;
+  box-sizing: border-box;
+}
+
+.left-side {
+    display: flex;
+    flex-direction: column;
+}
+
+.right-side {
+    display: flex;
+    flex-direction: column;
+}
+
+
+
+.stackfont{
+
+  ion-label {
+    font-size: 14px;
+  }
+
+  ion-item.item-has-focus {
+    --border-color: #17a2b8 !important;
+    --border-width: 2px;
+  }
+
+  .dropdown{
+    margin-left: 15px;
+    font-size: 14px;
+  }
+
+  .item-40px{
+   
+    --min-height: 30px !important;
+    --max-height: 30px !important;  
+    height: 30px !important;  
+    --inner-padding-end: 0px !important;
+    
+  }
+
+  ion-textarea {
+    --color: black;
+    font-size: 14px;
+
+  }
+
+  ion-item {
+    --highlight-height:0px !important;
+    --highlight-color-focused:#17a2b8;
+    --highlight-color-valid:  #17a2b8;
+    --highlight-color-invalid: #17a2b8;
+    border: 1px solid rgba(0,0,0,.1);
+
+    --border-color: transparent !important;
+    //  --highlight-height: 10;
+    --background: none;
+    // background: #eaeaea;
+    border-radius: 0px;
+    --min-height: 30px;
+
+    ion-input {
+        // border: 1px solid #000;
+      --padding-right: 0;
+      --padding-left: 0;
+      --padding-top: 0;
+      --padding-bottom: 0;
+      --color: black;
+      font-size: 14px!important;
+      --inner-padding-end: 0px !important;
+      --inner-padding-left: 0px !important;
+      --inner-padding-right: 0px !important;
+    }
+    
+.item-native .item-inner{padding:0!important;
+  --inner-padding-end: 0px !important;
+  --inner-padding-left: 0px !important;
+  --inner-padding-right: 0px !important;}
+
+    div.item-inner{
+      --padding-left:0 !important;
+    }
+
+   
+     
+  }
+
+  ion-select{
+  font-size: 14px !important;
+  font-weight: 400 !important;
+  }
+}
+// .stackfont {
+
+//   ion-label {
+//     font-size: 14px;
+//   }
+
+//   ion-item.item-has-focus {
+//     --border-color: #17a2b8 !important;
+//     --border-width: 2px;
+//   }
+
+//   .dropdown{
+//     margin-left: 15px;
+//     font-size: 14px;
+//   }
+
+//   .item-40px{
+   
+//     --min-height: 30px !important;
+//     --max-height: 30px !important;  
+//     height: 30px !important;  
+//     --inner-padding-end: 0px !important;
+    
+//   }
+
+//   ion-textarea {
+//     --color: black;
+//     font-size: 14px;
+
+//   }
+
+//   ion-item {
+    
+//     --border-color: transparent !important;
+//      --highlight-height: 10;
+//     --background: none;
+//     background: #eaeaea;
+//     border-radius: 4px;
+//     --min-height: 30px;
+
+//     ion-input {
+//       --padding-right: 0;
+//       --padding-left: 0;
+//       --padding-top: 0;
+//       --padding-bottom: 0;
+//       --color: black;
+//       font-size: 14px!important;
+//       --inner-padding-end: 0px !important;
+//       --inner-padding-left: 0px !important;
+//       --inner-padding-right: 0px !important;
+//     }
+    
+// .item-native .item-inner{padding:0!important;
+//   --inner-padding-end: 0px !important;
+//   --inner-padding-left: 0px !important;
+//   --inner-padding-right: 0px !important;}
+
+//     div.item-inner{
+//       --padding-left:0 !important;
+//     }
+
+   
+     
+//   }
+
+//   ion-select{
+//   font-size: 14px !important;
+//   font-weight: 400 !important;
+//   }
+// }
+
+.ion-color-vibrantwhite {
+  --ion-color-base: #ffffff;
+  --ion-color-base-rgb: 255,255,0;
+  --ion-color-contrast: #ff7f5f;
+  --ion-color-contrast-rgb: 0,0,0;
+  --ion-color-shade: #ffffff;
+  --ion-color-tint: #ffffff;
+}
+
+
+.ion-color-vibrant {
+  --ion-color-base: #ff7f5f;
+  --ion-color-base-rgb: 255,255,0;
+  --ion-color-contrast: #ffffff;
+  --ion-color-contrast-rgb: 0,0,0;
+  --ion-color-shade: #ffbead;
+  --ion-color-tint: #ff8f73;
+}
+
+
+.ion-color-red {
+  --ion-color-base: #FF0000;
+  --ion-color-base-rgb: 255,255,0;
+  --ion-color-contrast: #ffffff;
+  --ion-color-contrast-rgb: 0,0,0;
+  --ion-color-shade: #ffbead;
+  --ion-color-tint: #ff8f73;
+}
+
+.heading,
+.panel-heading {
+  margin-bottom: 1rem;
+}
+.heading h1,
+.panel-heading h1,
+.heading h2,
+.panel-heading h2,
+.heading h3,
+.panel-heading h3,
+.heading h4,
+.panel-heading h4,
+.heading h5,
+.panel-heading h5,
+.heading h6,
+.panel-heading h6 {
+  line-height: 1.1;
+  display: inline-block;
+  margin-bottom: 0;
+  padding-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+.heading h1:after,
+.panel-heading h1:after,
+.heading h2:after,
+.panel-heading h2:after,
+.heading h3:after,
+.panel-heading h3:after,
+.heading h4:after,
+.panel-heading h4:after,
+.heading h5:after,
+.panel-heading h5:after,
+.heading h6:after,
+.panel-heading h6:after {
+  content: " ";
+  display: block;
+  width: 100px;
+  height: 2px;
+  margin-top: 0.6rem;
+  background: #4fbfa8;
+}
+.heading.text-center h1:after,
+.text-center.panel-heading h1:after,
+.heading.text-center h2:after,
+.text-center.panel-heading h2:after,
+.heading.text-center h3:after,
+.text-center.panel-heading h3:after,
+.heading.text-center h4:after,
+.text-center.panel-heading h4:after,
+.heading.text-center h5:after,
+.text-center.panel-heading h5:after,
+.heading.text-center h6:after,
+.text-center.panel-heading h6:after {
+  margin-left: auto;
+  margin-right: auto;
+}
+.no-padding {
+  padding: 0px !important;
+}
+.no-margin {
+  margin: 0px !important;
+}
+
+
+
+
+
+.menuitemact{
+  cursor: pointer;
+  text-decoration: underline;
+  float: right;
+  padding-left:5px;
+}
+
+
+.nav {
+  width: 500px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  padding-left: 0;
+  margin-bottom: 0;
+  list-style: none;
+}
+
+
+.my-custom-class {
+  .popover-content {
+    top: 5% !important;
+    width: 80% !important;
+    height: 90% !important;
+  }
+}

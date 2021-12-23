@@ -1,0 +1,337 @@
+<ion-content [fullscreen]="true">
+
+  <perfect-scrollbar style="height: 100%;width:100%;">
+    <ion-grid class="ion-no-padding" *ngIf="this.isLoaded"
+      style="width:100%;margin-top:-8px;padding:0;margin: 0;font-family: 'Poppins', sans-serif;">
+      <section id="contactus">
+        <div class="heading ion-text-center" style="width:100%;">
+          <h3 style="color: #555 !important;" class="ion-text-center">Order Detail</h3>
+        </div>
+        <ion-grid *ngFor="let item of obsDeliveryInfo?.Cart; let x = index">
+          <ion-row style="width: 100%;" size="12">
+            <ion-col size-md="10" size-xs="12" size-lg="10" offset-lg="1" offset-md="1" offset-xs="0">
+              <ion-row size="12" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                <div class="imagediv">
+                  <button class="btn" (click)="removeCustomisePackaging(item.Packaging_ID)">
+                    <fa-icon icon="times" style="font-size:15px"></fa-icon>
+                  </button>
+                </div>
+                <ion-col size="12" size-lg="12">
+
+                  <ion-col size="12" class="ion-align-self-center stackfont">
+                    <ion-row style="padding-top:5px;padding-bottom:5px;" >
+                      <ion-col size-lg="2" size-xs="12" style="padding:0px;padding-bottom:10px;margin:0px">
+                        <ion-label style="font-size:18px;color:#5D6167;font-weight: bold;
+                     padding-left:10px;padding-top:10px;">{{item.Packaging_ID}}</ion-label>
+                      </ion-col>
+                      <ion-col size-lg="5" size-xs="12"  class="ion-align-self-center" style="padding-left:10px;padding-right:10px">
+                        <ion-row  size="12">
+                          <ion-col class="ion-align-self-center stackfont" style="font-size:15px;color:#5D6167"
+                          size="4">
+                          <ion-label>Name</ion-label>
+                        </ion-col>
+                        <ion-col class="ion-align-self-center stackfont" size="8">
+                          <ion-item lines="none">
+                            <ion-input name="Name" [(ngModel)]="item.Packaging_Name" #firstName="ngModel" required
+                              placeholder="Enter Your Name"></ion-input>
+                          </ion-item>
+                        </ion-col>
+                        </ion-row>
+                      
+                      </ion-col>
+                      <ion-col size-lg="2" size-xs="12" style="padding-left:10px;padding-right:10px"> 
+                        <ion-button style="float: right; width:140px;height:35px;font-size:13px;" color="vibrant"
+                          expand="round" (click)="addProduct(x)">
+                          <!-- <fa-icon icon="cart-plus" style="font-size: 13px; margin-right:5px"></fa-icon> -->
+
+                          {{item.Cart_Detail === undefined || item.Cart_Detail?.length &lt; 1 ? "Add Product":"Modify
+                          Order"}}
+                        </ion-button>
+                      </ion-col>
+                    </ion-row>
+
+                  </ion-col>
+
+
+                </ion-col>
+
+              </ion-row>
+
+              <ion-row size="12" style="border: 1px solid rgba(0,0,0,.1)">
+                <ion-col>
+                  <ion-row size="12" class="ion-align-self-center ion-text-center"
+                    style="background-color:#fbfbfb;height:47px;font-size:15px;color:#5D6167">
+
+                    <ion-col class="ion-align-self-center ion-text-center" size-lg="1" size-md="1">
+
+                    </ion-col>
+                    <ion-col class="ion-align-self-center ion-text-left" size-lg="2" size-md="2">
+                      Category
+                    </ion-col>
+                    <ion-col class="ion-align-self-center ion-text-left" size-lg="3" size-md="3">
+                      Products
+                    </ion-col>
+                    <ion-col class="ion-align-self-center ion-text-center" size-lg="2" size-md="2">
+                      Price
+                    </ion-col>
+                    <ion-col class="ion-align-self-center ion-text-center" size-lg="2" size-md="2">
+                      Quantity
+                    </ion-col>
+                    <ion-col class="ion-align-self-center ion-text-center" size-lg="2" size-md="2">
+                      Subtotal
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+
+              <ion-row size="12" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                <ion-col *ngIf="item.Cart_Detail!== undefined &&  item.Cart_Detail?.length >0 ">
+                  <ion-row size="12" class="ion-align-self-center ion-text-center"
+                    style="margin-top:10px;font-size:15px;" *ngFor="let cartdet of item.Cart_Detail; let i = index">
+
+                    <ion-col class="ion-align-self-center ion-text-lg-left ion-text-sm-left ion-text-md-center" size-lg="1" size-md="1" size-xs="12">
+                      <img src="{{cartdet.Image_Path}}" style="height:60px;width:60px;padding-left:5px ">
+                    </ion-col>
+
+                    <ion-col style="color:#021333;font-size:15px" class="ion-align-self-center ion-text-lg-left ion-text-sm-left ion-text-md-center"
+                      size-lg="2" size-md="2" size-xs="12">
+                      {{cartdet.Category_Code}}
+                    </ion-col>
+
+                    <ion-col style="color:#021333;font-size:15px" class="ion-align-self-center ion-text-lg-left ion-text-sm-left ion-text-md-center"
+                      size-lg="3" size-md="3" size-xs="12 " style="font-weight: bold;">
+                      {{ cartdet.Product_Name}}
+                    </ion-col>
+                    <ion-col style="color:#5D6167;font-size:15px" class="ion-align-self-center ion-text-center"
+                      size-lg="2" size-md="2" size-xs="12">
+                      {{ cartdet.Format_Price}}
+                    </ion-col>
+                    <ion-col class="stackfont ion-align-self-center ion-text-center ion-no-padding" size-lg="2"
+                      size-md="2" size-xs="12" style="text-align: center;align-items: center;align-content: center;">
+                      {{ cartdet.Before_Qty}}
+
+                    </ion-col>
+                    <ion-col style="color:#5D6167;font-size:15px" class="ion-align-self-center ion-text-center"
+                      size-lg="2" size-md="2" size-xs="12">
+                      {{subtotal(x,i)}}
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+                <ion-col *ngIf="item.Cart_Detail === undefined || item.Cart_Detail?.length <1">
+                  <ion-row size="12" class="ion-align-self-center ion-text-center"
+                    style="margin-top:10px;margin-bottom:10px;font-size:15px;">
+                    <ion-col style="color:#5D6167;font-size:15px" class="ion-align-self-center ion-text-center"
+                      size="12">
+                      <!-- Please add product to cart. -->
+                    </ion-col>
+                  </ion-row>
+                </ion-col>
+              </ion-row>
+
+
+
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <ion-row size="12">
+          <ion-col class="ion-text-right" size-md="10" size-xs="12" size-lg="10" offset-lg="1" offset-md="1"
+            offset-xs="0">
+            <a [routerLink]="[]" (click)="addCustomisePackaging()"
+              style="text-decoration: underline;font-size:16px;">Add Customise Packaging</a>
+          </ion-col>
+        </ion-row>
+        <!-- <ion-row  style="width: 100%;" size="12" >
+          <ion-col size-md="10" size-xs="12" size-lg="10" offset-lg="1" offset-md="1"
+          offset-xs="0">   
+          <ion-row size="12"  style="font-family: 'Poppins', sans-serif;">
+            <ion-col>
+              <ion-row size="12" class="ion-align-self-right ion-text-right"
+                style="margin-top:10px;font-size:15px;float: right;">
+                <ion-button  style=" width:220px;height:39px;float: right;font-size:13px;" color="vibrant" expand="round" (click)="tapCheckout()">
+                  PROCEED TO CHECKOUT
+                </ion-button>
+          
+              </ion-row>
+            </ion-col>
+          </ion-row>  
+          </ion-col>
+         
+        </ion-row> -->
+
+        <ion-grid *ngIf="obsDeliveryInfo.Cart_Total>0">
+          <ion-row style="width: 100%;" size="12">
+            <ion-col class="ion-align-self-center" size-md="4" size-xs="12" size-lg="4" offset-lg="7" offset-md="7"
+              offset-xs="0">
+              <ion-row size="12" style="border: 1px solid rgba(0,0,0,.1)">
+                <ion-col>
+                  <ion-row size="12" class="ion-align-self-center ion-text-center"
+                    style="background-color:#fbfbfb;height:47px;font-size:15px;color:#5D6167">
+
+                    <ion-col style="margin-left:20px" class="ion-align-self-center ion-text-left" size-lg="4"
+                      size-md="4">
+                      Cart Totals
+                    </ion-col>
+                  </ion-row>
+
+                </ion-col>
+              </ion-row>
+              <ion-row size="12" style="border: 1px solid rgba(0,0,0,.1);font-family: 'Poppins', sans-serif;">
+                <ion-col>
+
+                  <ion-row size="12" class="ion-align-self-center" style="margin-top:10px;font-size:14px;">
+                    <ion-col offset="1" size="10">
+                      <ion-row style="border-bottom: 1px solid rgba(0,0,0,.1);">
+                        <ion-col class=" ion-text-left" style="color:#021333;font-size:14px;font-weight: bold;"
+                          size-lg="6">
+                          Product
+                        </ion-col>
+                        <ion-col class=" ion-text-right" style="color:#021333;font-size:14px;font-weight: bold;"
+                          size-lg="6">
+                          Subtotal
+                        </ion-col>
+                      </ion-row>
+                    </ion-col>
+                  </ion-row>
+
+                  <ion-grid *ngFor="let orderdetCat of obsOrder.Order_Detail_Categories; let i = index">
+                    <ion-row size="12" class="ion-align-self-center" style="margin-top:10px;font-size:14px;">
+                      <ion-col offset="1" size="10">
+                        <ion-row style="border-bottom: 1px solid rgba(0,0,0,.1);">
+                          <ion-col class=" ion-text-left" style="color:#021333;font-size:14px;font-weight: bold;"
+                            size-lg="6">
+                            {{orderdetCat.Category_Code}}
+                          </ion-col>
+                          <!-- <ion-col class=" ion-text-right" style="color:#021333;font-size:14px;font-weight: bold;" size-lg="6">
+                            Subtotal
+                          </ion-col> -->
+                        </ion-row>
+                      </ion-col>
+                    </ion-row>
+                    <ion-row size="12" class="ion-align-self-center" style="margin-top:10px;font-size:14px;"
+                      *ngFor="let orderdet of orderdetCat.Order_Detail; let i = index">
+                      <ion-col offset="1" size="10">
+                        <ion-row>
+                          <ion-col class=" ion-text-left" style="color:#021333;font-size:14px" size-lg="6">
+                            {{ orderdet.Product_Name}} x {{ orderdet.Qty}}
+                          </ion-col>
+                          <ion-col class=" ion-text-right" style="color:#021333;font-size:14px" size-lg="6">
+                            {{ orderdet.Format_Sub_Total}}
+                          </ion-col>
+                        </ion-row>
+                      </ion-col>
+                    </ion-row>
+
+                    <ion-row size="12" class="ion-align-self-center" style="margin-top:10px;font-size:15px;">
+                      <ion-col offset="1" size="10">
+                        <ion-row style="border-top: 1px solid rgba(0,0,0,.1);">
+                          <ion-col class=" ion-text-left" style="color:#021333;font-size:15px" size-lg="6">
+                            Subtotal
+                          </ion-col>
+                          <ion-col class=" ion-text-right" style="color:#021333;font-size:15px" size-lg="6">
+                            {{orderdetCat.Format_Sub_Total}}
+                          </ion-col>
+                        </ion-row>
+
+                      </ion-col>
+
+
+                    </ion-row>
+                  </ion-grid>
+
+                  <ion-row size="12" class="ion-align-self-center" style="margin-top:10px;font-size:14px;"
+                    *ngFor="let orderdetCa of obsOrder.Order_Detail_Categories; let i = index">
+
+
+
+                  </ion-row>
+
+
+
+
+
+                  <ion-row size="12" class="ion-align-self-center" style="margin-top:10px;font-size:15px;">
+                    <ion-col offset="1" size="10">
+                      <ion-row>
+                        <ion-col class=" ion-text-left" style="color:#021333;font-size:15px" size-lg="6">
+                          Total
+                        </ion-col>
+                        <ion-col class=" ion-text-right" style="color:#021333;font-size:15px" size-lg="6">
+                          {{this.obsOrder.Format_Sub_Total}}
+                        </ion-col>
+                      </ion-row>
+                      <ion-item-divider>
+                      </ion-item-divider>
+                    </ion-col>
+
+
+                  </ion-row>
+
+                  <!-- <ion-row size="12" class="ion-align-self-center" style="margin-top:10px;font-size:15px;">
+                    <ion-col offset="1" size="10">
+                      <ion-row>
+                        <ion-col class=" ion-text-left" style="color:#021333;font-size:15px" size-lg="6">
+                          Shipping
+                        </ion-col>
+                        <ion-col class=" ion-text-right" style="color:#021333;font-size:15px" size-lg="6" >
+                          <ion-row class="stackfont" size="12" size-lg="12" (click)="check_delivery()">
+                            <ion-checkbox style="--border-radius:100%" #chkDelivery [checked]="deliveryChecked"  >
+                            </ion-checkbox>
+                            <ion-label style="margin-left:5px">Delivery fee: $20.00</ion-label>
+                          </ion-row>
+
+                          <ion-row class="stackfont" size="12" size-lg="12" style="margin-top:5px" (click)="check_self()">
+                            <ion-checkbox style="--border-radius:100%"  [checked]="selfChecked" #chkSelfPickup >
+                            </ion-checkbox>
+                            <ion-label style="margin-left:5px">Self Pickup</ion-label>
+                          </ion-row>
+                        </ion-col>
+                      </ion-row>
+                      <ion-item-divider>
+                      </ion-item-divider>
+                    </ion-col>
+                  </ion-row>
+                  <ion-row size="12" class="ion-align-self-center" style="margin-top:10px;font-size:15px;">
+                    <ion-col offset="1" size="10">
+                      <ion-row>
+                        <ion-col class=" ion-text-left" style="color:#021333;font-size:15px" size-lg="6">
+                          Grand Total
+                        </ion-col>
+                        <ion-col class=" ion-text-right" style="color:#021333;font-size:15px" size-lg="6">
+                         {{this.obsOrder.Format_Total}}
+                        </ion-col>
+                      </ion-row>
+                    </ion-col>
+                    <ion-item-divider>
+                    </ion-item-divider>
+
+                  </ion-row> -->
+                  <ion-row size="12" class="ion-align-self-center" style="margin-top:10px;font-size:15px;">
+                    <ion-col offset="1" size="10">
+                      <ion-row>
+                        <ion-button style=" width:98%;height:39px;float: right;font-size:13px;" color="vibrant"
+                          expand="round" (click)="tapCheckout()">
+                          <!-- <fa-icon icon="cart-plus" style="font-size: 13px; margin-right:5px"></fa-icon> -->
+
+                          PROCEED TO CHECKOUT
+                        </ion-button>
+                      </ion-row>
+                    </ion-col>
+                    <!-- <ion-item-divider>
+                    </ion-item-divider> -->
+
+                  </ion-row>
+
+                </ion-col>
+              </ion-row>
+            </ion-col>
+          </ion-row>
+
+
+        </ion-grid>
+
+      </section>
+
+
+    </ion-grid>
+  </perfect-scrollbar>
+</ion-content>

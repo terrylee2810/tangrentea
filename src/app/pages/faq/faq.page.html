@@ -1,0 +1,221 @@
+<ion-content [fullscreen]="true">
+
+  <perfect-scrollbar style="height: 100%;width:100%;">
+    <ion-grid class="ion-no-padding"
+      style="width:100%;margin-top:-8px;padding:0;margin: 0;font-family: 'Poppins', sans-serif;">
+
+      <div class="heading ion-text-center" style="width:100%;">
+        <h3 style="color: #555 !important;" class="ion-text-center">FAQ</h3>
+      </div>
+      <ion-grid>
+
+        <ion-row style="width: 100%;" size="12">
+          <ion-col class="ion-align-self-center" size-md="10" size-xs="12" size-lg="10" offset-lg="1" offset-md="1"
+            offset-xs="0"
+            style="border-radius:5px;background-color: #E8E8E8;border: 2px solid #E8E8E8; margin-bottom:10px">
+            <ion-row (click)="tapCloseTab(1);">
+              <ion-col style="padding-left:10px; padding-right:10px;padding-top:10px; padding-bottom:10px;">
+                Are Your Ang Ku Kuehs Halal?
+                <fa-icon icon="plus" style="font-size: 13px; margin-right:5px;float:right;"></fa-icon>
+              </ion-col>
+            </ion-row>
+            <ion-row style="background-color: #FFFFFF" *ngIf="this.faq1 == true">
+
+              <ion-col style="padding-left:10px; padding-right:10px;padding-top:10px; padding-bottom:10px;">
+                We do not have Halal certification.
+                Our products are vegetarian, no honey, eggs, butter.
+                Just note that we add fried shallots (onions) in our savoury bean Ang Ku Kueh.
+              </ion-col>
+            </ion-row>
+          </ion-col>
+
+          <ion-col class="ion-align-self-center" size-md="10" size-xs="12" size-lg="10" offset-lg="1" offset-md="1"
+            offset-xs="0"
+            style="border-radius:5px;background-color: #E8E8E8;border: 2px solid #E8E8E8; margin-bottom:10px">
+            <ion-row (click)="tapCloseTab(2);">
+              <ion-col style="padding-left:10px; padding-right:10px;padding-top:10px; padding-bottom:10px;">
+                Can I buy any filling of your Ang Ku Kuehs anytime?
+                <fa-icon icon="plus" style="font-size: 13px; margin-right:5px;float:right;"></fa-icon>
+              </ion-col>
+            </ion-row>
+            <ion-row style="background-color: #FFFFFF" *ngIf="this.faq2 == true">
+
+              <ion-col style="padding-left:10px; padding-right:10px;padding-top:10px; padding-bottom:10px;">
+                We sell 6 fillings (Peanut, Sweet Bean, Savoury Bean, Coconut, Yam and Corn) Ang Ku Kueh Monday to Friday,
+                2 fillings (Peanut and Sweet Bean) only on Saturday.
+              </ion-col>
+            </ion-row>
+          </ion-col>
+
+
+          <ion-col class="ion-align-self-center" size-md="10" size-xs="12" size-lg="10" offset-lg="1" offset-md="1"
+            offset-xs="0"
+            style="border-radius:5px;background-color: #E8E8E8;border: 2px solid #E8E8E8; margin-bottom:10px">
+            <ion-row (click)="tapCloseTab(3);">
+              <ion-col style="padding-left:10px; padding-right:10px;padding-top:10px; padding-bottom:10px;">
+                How to differentiate Peanut from Sweet Bean Ang Ku Kueh? Both are Red in colour.
+                <fa-icon icon="plus" style="font-size: 13px; margin-right:5px;float:right;"></fa-icon>
+              </ion-col>
+            </ion-row>
+            <ion-row style="background-color: #FFFFFF" *ngIf="this.faq3 == true">
+
+              <ion-col style="padding-left:10px; padding-right:10px;padding-top:10px; padding-bottom:10px;">
+                Look at the banana leaves. Peanut has rectangular banana leave, Sweet Bean's banana leaves four
+                corners are cut.
+              </ion-col>
+            </ion-row>
+          </ion-col>
+
+          <ion-col class="ion-align-self-center" size-md="10" size-xs="12" size-lg="10" offset-lg="1" offset-md="1"
+            offset-xs="0"
+            style="border-radius:5px;background-color: #E8E8E8;border: 2px solid #E8E8E8; margin-bottom:10px">
+            <ion-row (click)="tapCloseTab(4);">
+              <ion-col style="padding-left:10px; padding-right:10px;padding-top:10px; padding-bottom:10px;">
+                Why assorted filling (eg Savoury Bean) always sold out evertime when I walk-in to buy across the counter?
+                <fa-icon icon="plus" style="font-size: 13px; margin-right:5px;float:right;"></fa-icon>
+              </ion-col>
+            </ion-row>
+            <ion-row style="background-color: #FFFFFF" *ngIf="this.faq4 == true">
+
+              <ion-col style="padding-left:10px; padding-right:10px;padding-top:10px; padding-bottom:10px;">
+                Our business started at 8am every morning to prepare the kuehs. We starts to receive walk-in customer at
+                11am.
+                Assorted filling Ang Ku Kueh are freshly hand made daily with fix capacity, after allocated to all pre
+                orders the balance quantity are available for selling across the counter until finish.
+                You can pre order to purchase the assorted filling Ang Ku Kueh, and to collect at your convinient time
+                Monday to Friday 1pm - 5pm.
+              </ion-col>
+            </ion-row>
+          </ion-col>
+
+
+          <ion-col class="ion-align-self-center" size-md="10" size-xs="12" size-lg="10" offset-lg="1" offset-md="1"
+            offset-xs="0"
+            style="border-radius:5px;background-color: #E8E8E8;border: 2px solid #E8E8E8; margin-bottom:10px">
+            <ion-row (click)="tapCloseTab(5);">
+              <ion-col style="padding-left:10px; padding-right:10px;padding-top:10px; padding-bottom:10px;">
+                When is the earliest time that I can have my kuehs upon ordering?
+                <fa-icon icon="plus" style="font-size: 13px; margin-right:5px;float:right;"></fa-icon>
+              </ion-col>
+            </ion-row>
+            <ion-row style="background-color: #FFFFFF" *ngIf="this.faq5 == true">
+
+              <ion-col style="padding-left:10px; padding-right:10px;padding-top:10px; padding-bottom:10px;">
+                All our kuehs are freshly hand made every morning, it needs time to carefully prepare and made.
+                Your order can be ready in 2 to 3 days according to the advance notice required when ordering online.
+              </ion-col>
+            </ion-row>
+          </ion-col>
+
+          <ion-col class="ion-align-self-center" size-md="10" size-xs="12" size-lg="10" offset-lg="1" offset-md="1"
+            offset-xs="0"
+            style="border-radius:5px;background-color: #E8E8E8;border: 2px solid #E8E8E8; margin-bottom:10px">
+            <ion-row (click)="tapCloseTab(6);">
+              <ion-col style="padding-left:10px; padding-right:10px;padding-top:10px; padding-bottom:10px;">
+                Where to collect my order?
+                <fa-icon icon="plus" style="font-size: 13px; margin-right:5px;float:right;"></fa-icon>
+              </ion-col>
+            </ion-row>
+            <ion-row style="background-color: #FFFFFF" *ngIf="this.faq6 == true">
+
+              <ion-col style="padding-left:10px; padding-right:10px;padding-top:10px; padding-bottom:10px;">
+                You can collect your order at our shop at Everton Park, Block 1 #01-33, Singapore 081001, between 1pm to
+                5pm.
+                You can also reach us by MRT (NE3/EW16) at Outram Park Station exit Gate G towards Police Cantonment 
+                Complex or by Bus (61,166,167,196,197) get off at Everton Park Blk 3.
+              </ion-col>
+            </ion-row>
+          </ion-col>
+
+          <ion-col class="ion-align-self-center" size-md="10" size-xs="12" size-lg="10" offset-lg="1" offset-md="1"
+            offset-xs="0"
+            style="border-radius:5px;background-color: #E8E8E8;border: 2px solid #E8E8E8; margin-bottom:10px">
+            <ion-row (click)="tapCloseTab(7);">
+              <ion-col style="padding-left:10px; padding-right:10px;padding-top:10px; padding-bottom:10px;">
+                Do you do delivery?
+                <fa-icon icon="plus" style="font-size: 13px; margin-right:5px;float:right;"></fa-icon>
+              </ion-col>
+            </ion-row>
+            <ion-row style="background-color: #FFFFFF" *ngIf="this.faq7 == true">
+
+              <ion-col style="padding-left:10px; padding-right:10px;padding-top:10px; padding-bottom:10px;">
+                Yes, we do delivery! Pls note delivery timing is from 1pm to 5pm.
+                With a min purchase of 50 pieces, a delivery charge of 15 to 20 dollars will be charged depending on
+                your location.
+                Delivery charge will be waived if you purchase $270 and above in a single order.
+                For delivery fees, please give us a call @ 62231631 for a quote from 8am to 5pm, Monday to Saturday.
+              </ion-col>
+            </ion-row>
+          </ion-col>
+
+          <ion-col class="ion-align-self-center" size-md="10" size-xs="12" size-lg="10" offset-lg="1" offset-md="1"
+            offset-xs="0"
+            style="border-radius:5px;background-color: #E8E8E8;border: 2px solid #E8E8E8; margin-bottom:10px">
+            <ion-row (click)="tapCloseTab(8);">
+              <ion-col style="padding-left:10px; padding-right:10px;padding-top:10px; padding-bottom:10px;">
+                Do I need to put Ang Ku Kuehs in the refrigerator when I get home?
+                <fa-icon icon="plus" style="font-size: 13px; margin-right:5px;float:right;"></fa-icon>
+              </ion-col>
+            </ion-row>
+            <ion-row style="background-color: #FFFFFF" *ngIf="this.faq8 == true">
+
+              <ion-col style="padding-left:10px; padding-right:10px;padding-top:10px; padding-bottom:10px;">
+                Our Ang Ku Kuehs are freshly made on the day of your purchase.
+                If you intend to eat them on the very next day’s morning, you can leave it in room temperature.
+                If not, we do recommend you to put them in the refrigerator as our Kuehs do not contain any
+                preservatives.
+                If the kuehs you purchased just out from the kitchen, remember to open the box to air them to cool when
+                you reach home, close it back after that for keeping.
+              </ion-col>
+            </ion-row>
+          </ion-col>
+
+
+          <ion-col class="ion-align-self-center" size-md="10" size-xs="12" size-lg="10" offset-lg="1" offset-md="1"
+            offset-xs="0"
+            style="border-radius:5px;background-color: #E8E8E8;border: 2px solid #E8E8E8; margin-bottom:10px">
+            <ion-row (click)="tapCloseTab(9);">
+              <ion-col style="padding-left:10px; padding-right:10px;padding-top:10px; padding-bottom:10px;">
+                How do I heat up the Ang Ku Kuehs?
+                <fa-icon icon="plus" style="font-size: 13px; margin-right:5px;float:right;"></fa-icon>
+              </ion-col>
+            </ion-row>
+            <ion-row style="background-color: #FFFFFF" *ngIf="this.faq9 == true">
+
+              <ion-col style="padding-left:10px; padding-right:10px;padding-top:10px; padding-bottom:10px;">
+                Please do not put the lovely Ang Ku Kuehs into the microwave.
+                To heat up, steam them for 1-2 mins.
+                Alternatively, some may like it pan-fried with a little bit of cooking oil to give it a crispy texture.
+              </ion-col>
+            </ion-row>
+          </ion-col>
+
+          <ion-col class="ion-align-self-center" size-md="10" size-xs="12" size-lg="10" offset-lg="1" offset-md="1"
+            offset-xs="0"
+            style="border-radius:5px;background-color: #E8E8E8;border: 2px solid #E8E8E8; margin-bottom:10px">
+            <ion-row (click)="tapCloseTab(10);">
+              <ion-col style="padding-left:10px; padding-right:10px;padding-top:10px; padding-bottom:10px;">
+                Have further enquiries?
+                <fa-icon icon="plus" style="font-size: 13px; margin-right:5px;float:right;"></fa-icon>
+              </ion-col>
+            </ion-row>
+            <ion-row style="background-color: #FFFFFF" *ngIf="this.faq10 == true">
+              <ion-col style="padding-left:10px; padding-right:10px;padding-top:10px; padding-bottom:10px;">
+                Pls call us at 6223 1631 or email us at orders@jixiangeverton.com.sg
+              </ion-col>
+            </ion-row>
+          </ion-col>
+
+        </ion-row>
+
+
+
+
+
+
+      </ion-grid>
+
+
+    </ion-grid>
+  </perfect-scrollbar>
+</ion-content>

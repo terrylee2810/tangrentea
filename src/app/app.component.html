@@ -1,0 +1,178 @@
+<ion-app>
+
+  <ion-menu contentId="main-content" type="overlay">
+    <ion-content>
+      <perfect-scrollbar style="height: 100%; overflow: hidden;">
+
+        <ion-list id="inbox-list1">
+          <ion-item-divider>
+            <ion-col size="12">
+              <img src="../../../assets/headerlogo.png" class="logo ion-text-left" style="margin-left:10px;">
+            </ion-col>
+            <!-- <ion-list-header>Hi, {{ obsUserSession.User_Name }}</ion-list-header> -->
+          </ion-item-divider>
+
+          
+        </ion-list>
+
+        <ion-list style="padding:0px !important;" menuClose *ngFor="let p of appPages;  let i=index" id="inbox-list">
+          <ion-item ion-item (click)="mainPage(p, i);" lines="none" detail="false"
+            [class.selected]="selectedMainIndex == i" style="cursor: pointer;">
+            <fa-icon icon="{{ p.icon }}" slot="start" style="font-size:13px;margin-left:10px;width:12px"></fa-icon>
+
+            <ion-label style="font-size:13px;color:#4d4d33;">{{ p.title }}</ion-label>
+            <!-- <ion-icon [name]="selectedMainIndex == i? 'arrow-down' : 'arrow-forward'" float-right> -->
+            <!-- </ion-icon> -->
+            <ion-badge *ngIf="p!.badge && numberbadges >0" class="notification-badge">{{numberbadges}}</ion-badge>
+
+          </ion-item>
+
+          <!-- <div *ngIf="selectedMainIndex == i" style="margin-left: 30px;">
+            <div *ngFor="let subPage of p.subPages;  let s=index">
+              <ion-item menuClose *ngIf="subPage.visible == true" (click)="subPageq(subPage, s, i);"
+                style="cursor: pointer;" lines="none" detail="false" [class.selected]="selectedSubIndex == s">
+                <fa-icon icon="{{subPage.icon }}" slot="start" size="1x" stlye="width:12px;"></fa-icon>
+
+                <ion-label style="font-size:13px;color:#4d4d33;">{{ subPage.title }}</ion-label>
+              </ion-item>
+            </div>
+          </div> -->
+        </ion-list>
+
+      </perfect-scrollbar>
+
+
+
+
+
+
+    </ion-content>
+    <ion-footer>
+      <ion-label class="footer">  Copyright @ 2021 Ji Xiang Confectionery</ion-label>
+    </ion-footer>
+  </ion-menu>
+
+  <div class="desktop ion-no-padding" >
+    <ion-header class="ion-no-padding">
+      <ion-toolbar >
+        <ion-button style="margin-left: 0px;margin-right: 0px;" *ngIf="this.isLogin==true" slot="end" fill="clear" (click)="tapUser()" class="link ion-text-right fatextuser">     
+          <fa-icon icon="user" class="fauser"></fa-icon>
+          {{loginName}}
+        </ion-button>
+        <ion-button style="width:80px;margin-left: 0px;margin-right: 0px;"  slot="end" fill="clear" (click)="tapCheckout()" class="link ion-text-right">     
+          <fa-icon icon="shopping-cart" class="fashoppingcartbadge"></fa-icon>
+          <ion-badge class="shoppingcartbadge" *ngIf="numberbadges>0">{{numberbadges}}</ion-badge>
+        </ion-button>
+        <ion-buttons slot="end" >
+          <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+      
+        <ion-row class="ion-align-items-center" >
+
+          <ion-col size="2" size-md="4" size-xs="12">
+            <img src="../../../assets/headerlogo.png" class="logo ion-text-left" style="margin-right:10%;margin-left:10%;">
+          </ion-col>
+
+          <ion-col size="10" size-md="8" size-xs="12">
+            <div class="navbar" class="ion-text-end" >
+              <ion-button *ngIf="isDesktop" fill="clear" routerLink="/home" routerDirection="root" routerLinkActive="active-link"
+                class="link">
+                HOME
+              </ion-button>
+              <ion-button  *ngIf="isDesktop" fill="clear" routerLink="/about" routerDirection="root" routerLinkActive="active-link"
+                class="link">
+                ABOUT US
+              </ion-button>
+              <ion-button  *ngIf="isDesktop" fill="clear" routerLink="/delivery" routerDirection="root" routerLinkActive="active-link"
+                class="link">
+                ORDER ONLINE
+              </ion-button>
+              <ion-button  *ngIf="isDesktop" fill="clear" routerLink="/faq" routerDirection="root" routerLinkActive="active-link"
+                class="link">
+                FAQ
+              </ion-button>
+              <ion-button  *ngIf="isDesktop  && this.isLogin == false" fill="clear" routerLink="/login" routerDirection="root" routerLinkActive="active-link"
+                class="link">
+                MY ACCOUNT
+              </ion-button>
+            
+              <!-- <ion-button (click)="settingsPopover($event)" expand="block" shape="round" style="height:48px;width:48px">
+                  <fa-icon icon="ellipsis-v" style="font-size: 20px;"></fa-icon>
+                
+                </ion-button>
+             -->
+
+            </div>
+        
+
+          </ion-col>
+        </ion-row>
+
+
+      </ion-toolbar>
+
+
+
+    </ion-header>
+  </div>
+
+
+
+
+  <ion-content class="ion-no-padding">
+    <!-- <perfect-scrollbar style="height: 100%; overflow: hidden;"> -->
+    <ion-router-outlet id="main-content"></ion-router-outlet>
+    <!-- </perfect-scrollbar> -->
+
+  </ion-content>
+
+  <ion-footer>
+
+    <ion-row class="ion-justify-content-center" style="padding-top:5px">
+      <div style="justify-content: center;
+      align-items: center; display: flex;">
+        <img src="../../../assets/phone_dark.svg" class="ion-text-left" style="height:18px;width:18px;margin-left:10px">
+        <ion-label class="font1 ion-align-self-center" style="justify-content: center;
+        align-items: center;"> +65 6223 1631</ion-label>
+      </div>
+      <div style="justify-content: center;
+      align-items: center; display: flex; ">
+        <img src="../../../assets/email_dark.svg" class="ion-text-left" style="height:18px;width:18px;margin-left:10px">
+        <ion-label class="font1 ion-align-self-center" style="justify-content: center;
+        align-items: center;"> orders@jixiangeverton.com.sg</ion-label>
+      </div>
+      <div style="margin-left: 5px;">
+        <a rel="nofollow" href="https://www.facebook.com/Ji-Xiang-Everton-102042051956917/" target="_blank"><img
+            src="../../../assets/facebook.svg"
+            width="18" height="18" alt="Facebook"></a>
+      </div>
+      <!-- <div style="margin-left: 5px;">
+        <a rel="nofollow" href="https://www.instagram.com/jixiangconfectionery/?hl=en" target="_blank"><img
+            src="../../../assets/instagram_dark.svg"
+            width="18" height="18" alt="Instagram"></a>
+      </div> -->
+      <div style="margin-left: 5px;">
+        <a rel="nofollow" href="https://www.yelp.com/biz/ji-xiang-ang-ku-kueh-singapore" target="_blank"><img
+            src="../../../assets/yelp.png"
+            width="34" height="18" alt="Yelp"></a>
+      </div>
+    </ion-row>
+
+
+    <!-- <div id="scb-wrapper" class="scb-fixed"><ul id="scb-directs"><li class="scb-phone"><a rel="nofollow" href="tel:+6562231631"><img src="https://jixiangeverton.com.sg/wp-content/plugins/speed-contact-bar/public/assets/images/phone_dark.svg" width="18" height="18" alt="Phone Number"><span>+65 6223 1631</span></a></li><li class="scb-email"><a rel="nofollow" href="mailto:orders@jixiangeverton.com.sg"><img src="https://jixiangeverton.com.sg/wp-content/plugins/speed-contact-bar/public/assets/images/email_dark.svg" width="18" height="18" alt="Email"><span>orders@jixiangeverton.com.sg</span></a></li></ul><ul id="scb-socialicons"><li class="scb-facebook"><a rel="nofollow" href="https://www.facebook.com/JiXiangConfectionery.AngKuKueh/" target="_blank"><img src="https://jixiangeverton.com.sg/wp-content/plugins/speed-contact-bar/public/assets/images/facebook.svg" width="18" height="18" alt="Facebook"></a></li><li class="scb-instagram"><a rel="nofollow" href="https://www.instagram.com/jixiangconfectionery/?hl=en" target="_blank"><img src="https://jixiangeverton.com.sg/wp-content/plugins/speed-contact-bar/public/assets/images/instagram_dark.svg" width="18" height="18" alt="Instagram"></a></li><li class="scb-yelp"><a rel="nofollow" href="https://www.yelp.com/biz/ji-xiang-ang-ku-kueh-singapore" target="_blank"><img src="https://jixiangeverton.com.sg/wp-content/plugins/speed-contact-bar/public/assets/images/yelp.png" width="34" height="18" alt="Yelp"></a></li></ul></div> -->
+    <!-- <ion-row class="ion-align-items-center">
+      <div>
+        <img src="../../../assets/phone_dark.svg" class="ion-text-left" style="height:18px;width:18px;margin-left:10px">
+        <ion-label class="font1"> +65 6223 1631</ion-label>
+      </div>
+      <div>
+        <img src="../../../assets/email_dark.svg" class="ion-text-left" style="height:18px;width:18px;margin-left:10px">
+        <ion-label class="font1"> order@jixiangeverton.com.sg</ion-label>
+      </div>
+
+    </ion-row> -->
+  </ion-footer>
+
+
+
+</ion-app>

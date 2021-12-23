@@ -1,0 +1,312 @@
+<ion-content [fullscreen]="true">
+
+  <perfect-scrollbar style="height: 100%;width:100%;" >
+
+    <ion-grid class="ion-no-padding"
+      style="width:100%;margin-top:-8px;padding:0;margin: 0;font-family: 'Poppins', sans-serif;">
+      <ion-row class="ion-no-padding ion-align-self-right" style="width:100%;padding:0;margin: 0;" size="12"
+        size-md="12" size-xs="12">
+        <div class="swiper-container"
+          style="background-size:100% 100%;background-image: 'url(../../../assets/hptest1.jpg)';min-height:600px;  background-position:35% 49%;background-size: cover; background-repeat: no-repeat;">
+          <!-- style="background-image: 'url(../../../assets/desktop.webp)';min-height:600px; background-position:35% 49%; background-repeat: no-repeat;"  background-color: #facaca; -->
+          <!-- <div class="swiper-slide" [ngStyle]="{}"></div> -->
+          <div style="padding-top: 7%;padding-right: 40px;float: right;">
+            <img src="../../../assets/tpr2logo(Edited).png" 
+            class="homelogo" >
+            <!--
+                     [ngStyle.xs]="{'margin-left':0%;'width':100px;'height':230px;}"
+            [ngStyle.sm]="{'margin-left':0%;'width':200px;'height':230px;}"
+            [ngStyle.md]="{'margin-left':0%;'width':300px;'height':230px;}"
+            [ngStyle.lg]="{'margin-left':0%;'width':400px;'height':230px;}"
+              <ion-col style="width:50%;">   style="margin-left:0%;width:600px;height:230px;"
+              <img src="../../../assets/divlogo.webp" style="width:100%;height:143px;  ">
+            </ion-col>
+           -->
+            <h2 class="ion-text-right" style="color:#FFF;font-size:40px;font-weight: 540;">Traditional Handmade Ang Ku
+              Kueh</h2>
+            <h4 class="ion-text-right" style="color:#FFF;font-size:20px;font-weight: 540;"> The Nonya Way of the Ang Ku
+              Kueh</h4>
+            <ion-button style="border-radius: 0px; width:120px;height:40px;float: right;font-size:16px;font-weight:bold"
+              color="red" expand="full" (click)="ordernow('')">
+              <!-- <fa-icon icon="cart-plus" style="font-size: 13px; margin-right:5px"></fa-icon> -->
+
+              ORDER NOW
+            </ion-button>
+          </div>
+        </div>
+
+
+      </ion-row>
+
+      <ion-row style="padding-top: 50px;padding-left:8%;padding-right:8%;">
+        <ion-col size-lg="5" size-md="5" size-xs="12" style="cursor: pointer;" >
+          <!-- <img src="../../../assets/content1.webp" style="width:100%;padding:10px "> -->
+          <ion-slides style="width:100%"  [options]="slideOpts" >
+            <ion-slide style="width:100%;padding:10px">
+              <img style="object-fit: cover!important;" (click)="ordernow('AKK')" src="../../../assets/Akk1.jpg">
+            </ion-slide>
+            <ion-slide style="width:100%;padding:10px">
+              <img style="object-fit: cover!important;" (click)="ordernow('AKK')" src="../../../assets/Akk2.jpg">
+            </ion-slide>
+            <ion-slide style="width:100%;padding:10px">
+              <img style="object-fit: cover!important;" (click)="ordernow('AKK')" src="../../../assets/Akk3.jpg">
+            </ion-slide>
+            <ion-slide style="width:100%;padding:10px">
+              <img style="object-fit: cover!important;" (click)="ordernow('AKK')" src="../../../assets/Akk4.jpg">
+            </ion-slide>
+            <ion-slide style="width:100%;padding:10px">
+              <img style="object-fit: cover!important;" (click)="ordernow('AKK')" src="../../../assets/Akk5.jpg">
+            </ion-slide>
+            <ion-slide style="width:100%;padding:10px">
+              <img style="object-fit: cover!important;" (click)="ordernow('AKK')" src="../../../assets/Akk6.jpg">
+            </ion-slide>
+            <ion-slide style="width:100%;padding:10px">
+              <img style="object-fit: cover!important;" (click)="ordernow('AKK')" src="../../../assets/Akk7.jpg">
+            </ion-slide>
+            <ion-slide style="width:100%;padding:10px">
+              <img style="object-fit: cover!important;" (click)="ordernow('AKK')" src="../../../assets/Akk8.jpg">
+            </ion-slide>
+          </ion-slides>
+        </ion-col>
+        <ion-col size-lg="7" size-md="7" size-xs="12">
+          <div style="padding-left:30px !important;padding-right:30px!important">
+
+            <h2 class="ion-text-left">Ang Ku Kueh</h2>
+            <p class="graph" style="font-size:14px;line-height: 25px;font-weight: 400;color: #6a6a6a;">
+              Ji Xiang Confectionery has been specializing in handmade Ang Ku Kueh since 1988. Ang Ku Kueh is a
+              traditional Chinese snack with its origin from Fujian, China. Ang Ku Kueh literally means "Red Turtle
+              Cake" in Hokkien, which symbolizes Prosperity, Longevity and Wealth. Ang Ku Kueh is typically used for
+              praying, festive and special events purposes. Our Ang Ku Kueh comes in eight fillings - Peanut, Sweet
+              Bean, Savoury Bean, Corn, Coconut, Yam, Durian and Seasame, ranging between $1.00 to $2.50 each. Durian
+              Ang Ku Kueh is seasonal depending on durian availability. Monday to Friday - all 8 fillings available, Saturday -
+              Peanut and Sweet Bean only. 2 days advance notice, minimum order 10pcs/order.
+            </p>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-top: 10px;padding-left:8%;padding-right:8%;">
+        <ion-col size-lg="5" size-md="5" size-xs="12" style="cursor: pointer;">
+          <!-- <img src="../../../assets/content2.webp" style="width:100%;padding:10px "> -->
+          <ion-slides style="width:100%"  [options]="slideOpts2" >
+            <ion-slide style="width:100%;padding:10px">
+              <img style="object-fit: cover!important;" (click)="ordernow('MTO')" src="../../../assets/mto1.jpg">
+            </ion-slide>
+            <ion-slide style="width:100%;padding:10px">
+              <img style="object-fit: cover!important;" (click)="ordernow('MTO')" src="../../../assets/mto2.jpg">
+            </ion-slide>
+            <ion-slide style="width:100%;padding:10px">
+              <img style="object-fit: cover!important;" (click)="ordernow('MTO')" src="../../../assets/mto3.jpg">
+            </ion-slide>
+            <ion-slide style="width:100%;padding:10px">
+              <img style="object-fit: cover!important;" (click)="ordernow('MTO')" src="../../../assets/mto4.jpg">
+            </ion-slide>
+          </ion-slides>
+        </ion-col>
+        <ion-col size-lg="7" size-md="7" size-xs="12">
+          <div style="padding-left:30px !important;padding-right:30px!important">
+
+            <h2 class="ion-text-left">Made To Order</h2>
+            <p class="graph" style="font-size:14px;line-height: 25px;font-weight: 400;color: #6a6a6a;">
+              We also specialise in other traditional handmade kuehs for joyous celebratory occasions. Ang Ee when a
+              baby boy turns one month old at $1.20 each (normal Ang Ku Kueh for baby girl), in Peanut or Sweet Bean
+              filling. Ka Ta Ku when a baby turns one year old at $13 or $18 for a pair (red or rainbow colour, sweet
+              bean filling), symbolizing blessings to the baby for a solid foundation and smooth-sailing life ahead.
+              Tiong Ku which symbolizes longevity is typically used for celebrating birthdays at $3.00 each (peanut or
+              sweet bean filling). Available Monday to Saturday. 2 days advance notice, minimum order quantity applies.
+            </p>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-top: 25px;padding-left:8%;padding-right:8%;">
+        <ion-col size-lg="5" size-md="5" size-xs="12" style="cursor: pointer;">
+          <!-- <img src="../../../assets/BS_TEST.jpg" style="width:100%;padding:10px "> -->
+          <ion-slides style="width:100%"  [options]="slideOpts3">
+            <ion-slide style="width:100%;padding:10px">
+              <img style="object-fit: cover!important;" (click)="ordernow('BS')" src="../../../assets/BS1.jpg">
+            </ion-slide>
+            <ion-slide style="width:100%;padding:10px">
+              <img style="object-fit: cover!important;" (click)="ordernow('BS')" src="../../../assets/BS2.jpg">
+            </ion-slide>
+            <ion-slide style="width:100%;padding:10px">
+              <img style="object-fit: cover!important;" (click)="ordernow('BS')" src="../../../assets/BS3.jpg">
+            </ion-slide>
+          </ion-slides>
+        </ion-col>
+        <ion-col size-lg="7" size-md="7" size-xs="12">
+          <div style="padding-left:30px !important;padding-right:30px!important">
+
+            <h2 class="ion-text-left">Baby Shower</h2>
+            <p class="graph" style="font-size:14px;line-height: 25px;font-weight: 400;color: #6a6a6a;">
+              When a baby turns one month old, traditional treats such as ang ku kueh and red eggs are on the menu. Ji Xiang Baby Shower gift sets consist of Ang Ee or Ang Ku Kueh (depending on baby boy
+              or baby girl), Red Eggs, Ferrero Rocher Chocolates and Glutinious Rice between $13 - $15 per set, with
+              optional gift carrier bags. We pre-pack the goodies for you according to is a boy or a girl, so all you need to do is to
+              give out the gifts. Available Monday to Saturday. 5 days advance notice, minimum order 10 sets.
+            </p>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <ion-row style="margin-top: 25px;padding-left:8%;padding-right:8%;">
+        <ion-col size-lg="5" size-md="5" size-xs="12" >
+          <!-- <img src="../../../assets/content4.webp" style="width:100% !important;padding:10px "> -->
+          <ion-slides style="width:100%" [options]="slideOpts4" >
+            <ion-slide style="width:100%;padding:10px">
+              <img style="object-fit: cover!important;" (click)="ordernow('SK')" src="../../../assets/SK1.jpg">
+            </ion-slide>
+            <ion-slide style="width:100%;padding:10px">
+              <img style="object-fit: cover!important;" (click)="ordernow('SK')" src="../../../assets/SK2.jpg">
+            </ion-slide>
+            <ion-slide style="width:100%;padding:10px">
+              <img style="object-fit: cover!important;" (click)="ordernow('SK')" src="../../../assets/SK3.jpg">
+            </ion-slide>
+            <ion-slide style="width:100%;padding:10px">
+              <img style="object-fit: cover!important;" (click)="ordernow('SK')" src="../../../assets/SK4.jpg">
+            </ion-slide>
+            <ion-slide style="width:100%;padding:10px">
+              <img style="object-fit: cover!important;" (click)="ordernow('SK')" src="../../../assets/SK5.jpg">
+            </ion-slide>
+            <ion-slide style="width:100%;padding:10px">
+              <img style="object-fit: cover!important;" (click)="ordernow('SK')" src="../../../assets/SK6.jpg">
+            </ion-slide>
+          </ion-slides>
+        </ion-col>
+        <ion-col size-lg="7" size-md="7" size-xs="12">
+          <div style="padding-left:30px !important;padding-right:30px!important">
+
+            <h2 class="ion-text-left">Seasonal Kueh</h2>
+            <p class="graph" style="font-size:14px;line-height: 25px;font-weight: 400;color: #6a6a6a;">
+              For Chinese New Year, Qing Ming and Seventh Month we have handmade seasonal kueh for praying and
+              celebrating purposes. Ang Ji symbolizes wealth (Peanut and Sweet Bean at $3 each). Huat Kueh
+              symbolizes luck and prosperity comes in small (5pcs/$5/pack), medium (2pcs/$6/pack) and large
+              (1pc/$15/pack). Sesame Ball symbolizes growth and good fortune which consists of sweet bean paste in the
+              middle of a glutinous dough ball covered in sesame seeds at $1 each. Nian Gao a sweet and sticky rice cake
+              symbolizes a better year ahead at $23 each (large size only). Available during festive season Monday to
+              Saturday. 5 days advance notice, minimum order quantity applies.
+            </p>
+          </div>
+        </ion-col>
+      </ion-row>
+
+      <!-- <div style="width:100%;padding-left:8%;padding-right:8%;">
+        <h2 style="color: #000 !important;width:100% !important;font-size:40px" class="ion-text-center">Feature Press
+        </h2>
+      </div> -->
+
+      <!-- <ion-row size="12" style="margin-top: 10px;padding-left:8%;padding-right:8%;">
+
+        <ion-col size-lg="4" size-md="4" size-xs="12">
+
+          <img src="../../../assets/feature1.webp" style="padding:10px;margin: auto; ">
+        </ion-col>
+
+
+        <ion-col size-lg="4" size-md="4" size-xs="12">
+          <a href="https://www.youtube.com/watch?v=_7uRIuK74i8&ab_channel=SingaporeHeritageFestival" target="_blank">
+            <img src="../../../assets/feature2.webp" style="padding:10px;margin: auto; ">
+          </a>
+        </ion-col>
+
+
+        <ion-col size-lg="4" size-md="4" size-xs="12">
+          <a href="https://www.jixiangeverton.com.sg/assets/video.mp4" target="_blank">
+            <img src="../../../assets/feature3.webp" style="padding:10px;margin: auto; ">
+          </a>
+        </ion-col>
+
+        <ion-col size-lg="4" size-md="4" size-xs="12">
+          <a href="https://superfinefeline.com/blog/2012/05/ji-xiang-confectionerys-ang-ku-kueh-at-everton-park.html"
+            target="_blank">
+            <img src="../../../assets/feature4.webp"
+              style="padding:10px;margin-left: 20% !important;margin-right: 20% !important; ">
+          </a>
+        </ion-col>
+
+        <ion-col size-lg="4" size-md="4" size-xs="12">
+          <a href="https://lionraw.com/2015/07/09/ji-xiang-confectionery-%E5%90%89%E7%A5%A5%E7%BA%A2%E9%BE%9F%E7%B2%BF-the-nonya-way-of-the-ang-ku-kueh/"
+            target="_blank">
+            <img src="../../../assets/feature5.webp" style="padding:10px;margin: auto; ">
+          </a>
+        </ion-col>
+
+        <ion-col size-lg="4" size-md="4" size-xs="12">
+          <a href="http://ieatishootipost.sg/ji-xiang-ang-ku-kueh-before-there-was-mochi-there-was-ang-ku-kueh/"
+            target="_blank">
+
+            <img src="../../../assets/feature6.webp"
+              style="padding:10px;margin-left: 20% !important;margin-right: 20% !important; ">
+          </a>
+        </ion-col>
+
+      </ion-row> -->
+
+
+      <ion-row class="ion-no-padding ion-align-self-right" style="margin-top:25px;width:100%;padding:0;" size="12"
+        size-md="12" size-xs="12">
+        <div class="swiper-container"
+          style="background-position:35% 49%;background-size: cover;background-image: 'url(../../../assets/about5.webp)';min-height:145px;width:100%;background-repeat: no-repeat;">
+          <!-- <div class="swiper-slide" [ngStyle]="{}"></div> -->
+          <div>
+
+            <ion-row style="margin-top: 5px;padding-left:8%;padding-right:8%;">
+
+              <!--  <ion-col class="ion-text-center ion-align-self-center" size-lg="12" size-md="12" size-xs="12" style="height:100%;">
+          
+               <img src="../../../assets/logoonly.png" style="float:left;height:250px;
+                padding:10px; ">
+                <div style="top: 50%;" class="ion-align-self-center">
+                  <p class="graph  ion-align-self-center"
+                  style="padding-top:50px;width:100%;padding-left:50px;padding-right:50px;font-size:13.68px;line-height: 25px;
+                  font-weight: 400;color: #666666!important;  text-align:center;
+            display: table-cell;
+            vertical-align: middle;">
+                   
+                   Ji Xiang Confectionery specializes in handmade traditional Chinese pastry Ang Ku Kueh since 1988. 
+                   Every piece of our Ang Ku Kueh, Made To Order, Baby Shower and Seasonal Kueh is freshly made without preservatives. 
+                   Our kuehs do not have Hala certification but are vegetarian, no honey no eggs and no butter, just note that we add fried shallots (onions) in our salted bean Ang Ku Kueh. 
+                </p>
+    
+                </div>
+      
+              </ion-col> -->
+
+              <ion-col style="display: flex;justify-content: center;height:100%;" size-lg="2" size-md="2" size-xs="12">
+
+                <img src="../../../assets/newlogo.png" style="height:150px;">
+              </ion-col>
+              <ion-col class="ion-text-center ion-align-self-center" size-lg="10" size-md="10" size-xs="12"
+                style="height:100%;padding:0; margin:0;">
+
+                <p class="graph  ion-align-self-center"
+                  style="width:100%;padding-left:30px;padding-right:30px;font-size:13.68px;line-height: 25px;font-weight: 400;color: #666666!important;">
+                  Ji Xiang Confectionery specializes in handmade traditional Chinese pastry Ang Ku Kueh since 1988.
+                  <br />
+                  Every piece of our Kueh is freshly made without
+                  preservatives. <br />
+                  Our kuehs do not have Halal certification but are vegetarian, no honey no eggs and no butter, <br />
+                  just note that we add fried shallots (onions) in our savoury bean Ang Ku Kueh.
+                </p>
+
+              </ion-col>
+            </ion-row>
+
+          </div>
+
+
+        </div>
+
+
+      </ion-row>
+
+      <ion-row style="margin-top: 10px;margin-left:15px;margin-right:15px">
+        <ion-col size="6" class="ion-text-left" style="font-size:13px;color:#4E5768;">
+          Copyright @ 2021 Ji Xiang Confectionery
+        </ion-col>
+        <ion-col size="6" class="ion-text-right" style="font-size:13px;color:#4E5768;">
+          Powered by Ji Xiang Confectionery
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </perfect-scrollbar>
+</ion-content>
